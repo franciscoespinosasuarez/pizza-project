@@ -22,10 +22,16 @@ const Layout = () => {
                 <ScrollToTop>
                     <Navbar />
                     <Routes>
-                        <Route element={<Home />} path="/" />
-                        <Route element={<Demo />} path="/demo" />
-                        <Route element={<Single />} path="/single/:theid" />
-                        <Route element={<h1>Not found!</h1>} />
+                        {/* si no hay login, la main es login y te direcciona a él */}
+                        <Route element={<Main />} path="/" />
+                        <Route element={<Register />} path="/register" />
+                        <Route element={<Login />} path="/login" /> 
+                        <Route element={<Info-pizza />} path="/info-pizza/:theid"/>
+                        <Route element={<Mis-pizzas />} path="/my-pizzas" />
+                        <Route element={<Crear-pizza />} path="/create-pizza" />
+                        <Route element={<Edit-pizza />} path="/edit-pizza/:theid" />
+                        <Route element={<User-menu />} path="/user" />
+                        <Route element={<Change-password />} path="/change-password" />
                     </Routes>
                     <Footer />
                 </ScrollToTop>
