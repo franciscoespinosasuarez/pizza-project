@@ -5,3 +5,24 @@
     one more css for each page that will contain the selected used 
     on that page only (the ones not reused in other pages).
 */
+
+
+.cabecera{
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    
+}
+.imagen-cabecera{
+background-color: lightgoldenrodyellow;
+
+
+}
+
+.boton-registrate{
+    width: 150px;
+}
+
+.cabecera-izq{
+    text-align: center;
+}
