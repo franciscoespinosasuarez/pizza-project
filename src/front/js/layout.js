@@ -23,7 +23,6 @@ const Layout = () => {
         <div>
             <BrowserRouter basename={basename}>
                 <ScrollToTop>
-                    <Navbar />
                     <Routes>
                         {/* si no hay login, la main es login y te direcciona a él  y cambiar HOME por main*/}
                         <Route element={<Filterpiz />} path="/" />
