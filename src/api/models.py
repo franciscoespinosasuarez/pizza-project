@@ -9,7 +9,7 @@ class User(db.Model):
     password = db.Column(db.String(80), unique=False, nullable=False)
     name = db.Column(db.String(80), unique=False, nullable=False)
     user_name = db.Column(db.String(80), unique=True, nullable=False)
-    perfil_image = db.Column(db.String(), unique=False, nullable=False)
+    perfil_image = db.Column(db.String(), unique=False, nullable=True)
 
     pizza_relationship = db.relationship('Pizza', backref='user', lazy=True)
     fav_relationship = db.relationship('Favorite', backref='user', lazy=True)
@@ -42,7 +42,7 @@ class Pizza(db.Model):
     comment_relationship = db.relationship('Comment', backref='pizza', lazy=True)
 
     def __repr__(self):
-        return '<User %r>' % self.id
+        return '<Pizza %r>' % self.name
 
     def serialize(self):
         return {
@@ -61,7 +61,7 @@ class Ingredient(db.Model):
     recipe_relationship = db.relationship('Recipe', backref='ingredient', lazy=True)
 
     def __repr__(self):
-        return '<User %r>' % self.id
+        return '<Ingredient %r>' % self.name
 
     def serialize(self):
         return {
@@ -78,7 +78,7 @@ class Recipe(db.Model):
     ingredient_id = db.Column(db.Integer, db.ForeignKey('ingredient.id'))
 
     def __repr__(self):
-        return '<User %r>' % self.id
+        return '<Recipe %r>' % self.id
 
     def serialize(self):
         return {
@@ -98,7 +98,7 @@ class Comment(db.Model):
     date = db.Column(db.String(), unique=False, nullable=False)
 
     def __repr__(self):
-        return '<User %r>' % self.id
+        return '<Comment %r>' % self.id
 
     def serialize(self):
         return {
@@ -116,7 +116,7 @@ class Favorite(db.Model):
     id_pizza = db.Column(db.Integer, db.ForeignKey('pizza.id'))
 
     def __repr__(self):
-        return '<User %r>' % self.id
+        return '<Fav %r>' % self.id
 
     def serialize(self):
         return {

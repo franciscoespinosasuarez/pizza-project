@@ -2,20 +2,10 @@
 This module takes care of starting the API Server, Loading the DB and Adding the endpoints
 """
 from flask import Flask, request, jsonify, url_for, Blueprint
-from api.models import db, User, Pizza, Ingredient, Recipe, Comment
+from api.models import db, User, Pizza, Ingredient, Recipe, Comment, Favorite
 from api.utils import generate_sitemap, APIException
 
 api = Blueprint('api', __name__)
-
-
-@api.route('/hello', methods=['POST', 'GET'])
-def handle_hello():
-
-    response_body = {
-        "message": "Hello! I'm a message that came from the backend, check the network tab on the google inspector and you will see the GET request"
-    }
-
-    return jsonify(response_body), 200
 
 
 #PIZZA -------------------->
@@ -256,3 +246,51 @@ def single_comment(comment_id):
         db.session.commit()
 
         return jsonify(comment.serialize())
+
+#FAVORITE -------------------->
+@api.route('/favorite', methods=['GET', 'POST'])
+def get_post_favorite():
+    if request.method == 'GET':
+        favorite = Favorite.query.all()
+        all_favorite = list(map(lambda favorite: favorite.serialize(), favorite))
+        return jsonify(all_favorite), 201
+
+    if request.method == 'POST':
+        body = request.get_json()
+        favorite = favorite(id=body["id"], name=body["name"])
+        db.session.add(favorite)
+        db.session.commit()
+        return jsonify(favorite.serialize()), 201
+
+@api.route('/favorite/<int:favorite_id>', methods=['GET', 'PUT', 'DELETE'])
+def single_favorite(favorite_id):
+    if request.method == 'GET':
+        favorite = Favorite.query.get(favorite_id)
+        if favorite is None:
+            raise APIException("No existe esta favorite", 404)
+        
+        return jsonify(favorite.serialize())
+
+    if request.method == 'PUT':
+        favorite = Favorite.query.get(favorite_id)
+        if favorite is None:
+            raise APIException("No existe esta favorite", 404)
+        body = request.get_json()
+
+        if not("id" in body):
+            raise APIException("id de la favorite no encontrada", 404)
+
+        favorite.id = body["id"]
+        favorite.name = body["name"]
+        db.session.commit()
+
+        return jsonify(favorite.serialize())
+
+    if request.method == 'DELETE':
+        favorite = Favorite.query.get(favorite_id)
+        if favorite is None:
+            raise APIException("No existe la favorite que intentas eliminar", 404)
+        db.session.delete(favorite)
+        db.session.commit()
+
+        return jsonify(favorite.serialize())
