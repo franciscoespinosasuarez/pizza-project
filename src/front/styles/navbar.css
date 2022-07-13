@@ -1,0 +1,32 @@
+.container{
+    padding: 0;
+}
+
+.btn-nav{
+    margin-left: 5px;
+    background-color: #58483A;
+}
+
+.navbar-ofi{
+    background-color: #d3b7868a;
+}
+
+.icons{
+    width: 2rem;
+    margin: 10px;
+}
+
+.logo{
+    width: 4rem;
+    border-radius: 50%;
+}
+
+.my-user{
+    width:1.3rem;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.log-out{
+    width: 2.1rem
+}

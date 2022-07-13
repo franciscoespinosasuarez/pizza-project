@@ -1,17 +1,30 @@
 import React, { useContext } from "react";
 import { Context } from "../store/appContext";
+import { PizzaCard } from "../component/pizzacard/pizzacard";
 import rigoImageUrl from "../../img/rigo-baby.jpg";
-import "../../styles/home.css";
+import "../../styles/main.css";
 
-export const Home = () => {
+export const Main = () => {
 	const { store, actions } = useContext(Context);
 
 	return (
 		<div className="text-center mt-5">
-			<h1>Hello Rigo!!</h1>
+			<h1>FRASE DE INTRODUCCIÓN DE LA PÁGINA WEB</h1>
 			<p>
 				<img src={rigoImageUrl} />
 			</p>
+			<div className="Modal que muestra el filtro por ingredientes"></div>
+			<div className="row">
+				<div className="col">
+					<PizzaCard />
+					<PizzaCard />
+				</div>
+				<div className="col">
+					<PizzaCard />
+					<PizzaCard />
+				</div>
+				
+			</div>
 			<div className="alert alert-info">
 				{store.message || "Loading message from the backend (make sure your python backend is running)..."}
 			</div>
