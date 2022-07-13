@@ -1,6 +1,7 @@
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
+			token: null,
 			message: null,
 			demo: [
 				{
@@ -20,6 +21,46 @@ const getState = ({ getStore, getActions, setStore }) => {
 			exampleFunction: () => {
 				getActions().changeColor(0, "green");
 			},
+
+
+			syncTokenFromSessionStore: () => {
+				const token = sessionStorage.getItem("token")
+				if (token && token!= "" && token != undefined) setStore ( {token: token})
+			},
+
+
+
+
+			//LOGIN
+			login: async (email, password) => {
+				const opts = {
+					method: "POST",
+					headers: {
+					  "Content-Type": "application/json",
+					},
+					body: JSON.stringify({
+					  email: email,
+					  password: password,
+					}),
+				  };
+
+				  try {
+					const resp = await fetch("https://3001-franciscoes-pizzaprojec-jg9wqceqzce.ws-eu53.gitpod.io/api/token",opts)
+					if (resp.status !== 200){
+					  alert("error");
+					  return false;
+					}
+  
+					const data = await resp.json();
+					sessionStorage.setItem("token", data.access_token);
+					setStore( {token: data.access_token} )
+				  }
+				  catch(error){
+					console.log("hay un error")
+				  }
+			},
+
+
 
 			getMessage: async () => {
 				try{

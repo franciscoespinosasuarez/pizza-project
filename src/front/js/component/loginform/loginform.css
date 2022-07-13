@@ -1,31 +1,41 @@
 form {
-    width: 300px;
-    margin: 0 auto;
-    background-color: bisque;
-    padding: 10px;
-
+  width: 400px;
+  margin: 0 auto;
+  background-color: #f5f0c6;
+  padding: 30px;
+  border-radius: 15px;
+  -webkit-box-shadow: 5px 5px 15px 0px rgba(86,71,58,0.35); 
+  box-shadow: 5px 5px 15px 0px rgba(86,71,58,0.35);
 }
 
-label  {
-    display: block;
-    font-weight: 600;
-    margin: 5px 0;
- 
+label {
+  display: block;
+  font-weight: 600;
+  margin: 5px 0;
+  font-size: 18px;
+  color: #ad682f;
 }
 
 input {
-    width: 100%;
-    border-radius: 10px;
-    border: 1px solid black;
-    padding: 5px
+  width: 100%;
+  border-radius: 10px;
+  border: 1px solid black;
+  padding: 5px;
 }
 
 button {
-    display: block;
-    text-align: center;
-    width: 100%;
-    margin-top: 15px;
-    padding: 8x;
-    border-radius: 10px;
+  width: 100%;
+  margin-top: 15px;
+  background-color: #ad682f;
+  border: none;
+  color: white;
+  padding: 10px 25px;
+  font-size: 15px;
+  font-weight: 600;
+  text-transform: uppercase;
+  border-radius: 10px;
+}
 
+button:hover {
+  background-color: #b1550a;
 }
