@@ -15,9 +15,11 @@ export const Home = () => {
         <Navbar />
         <div className="container">
           <div className="cabecera">
-            <div className="row">
-              <div className="col cabecera-izq">
-                <h1 className="text-center">TITULO DE PROYECTO PIZZA</h1>
+            <div className="row cabecera-izq">
+              <div className="col">
+                <h1 className="h1cabecera">
+                  Las mejores pizzas para hacer en casa
+                </h1>
                 <button className="boton-registrate">Registrate</button>
               </div>
             </div>
@@ -30,59 +32,63 @@ export const Home = () => {
       </div>
       {/* fin cabecera */}
 
-      <div className="show-info">
-        <div className="row">
-          <div className="col">
-            <div className="">
-              <img
-                src="https://pbs.twimg.com/profile_images/732346720479248389/x106Whv9_400x400.jpg"
-                className="card-img-top"
-                alt="..."
-              />
-              <div className="card-body">
-                <p className="card-text">Texto explicando el proceso</p>
+      <section>
+        <h2 className="h2home">Encuentra tu pizza en un par de clics</h2>
+        <div className="show-info">
+          <div className="row">
+            <div className="col col-show-info">
+              <div className="">
+                <img
+                  src="https://pbs.twimg.com/profile_images/732346720479248389/x106Whv9_400x400.jpg"
+                  className="card-img-top"
+                  alt="..."
+                />
+                <div className="texto-info">
+                  <p className="">Marca los ingredientes que tienes</p>
+                </div>
               </div>
+              {/* fin card */}
             </div>
-            {/* fin card */}
-          </div>
-          {/* fin columna */}
+            {/* fin columna */}
 
-          <div className="col">
-            <div className="">
-              <img
-                src="https://pbs.twimg.com/profile_images/732346720479248389/x106Whv9_400x400.jpg"
-                className="card-img-top"
-                alt="..."
-              />
-              <div className="card-body">
-                <p className="card-text">Texto explicando el proceso</p>
+            <div className="col">
+              <div className="">
+                <img
+                  src="https://pbs.twimg.com/profile_images/732346720479248389/x106Whv9_400x400.jpg"
+                  className="card-img-top"
+                  alt="..."
+                />
+                <div className="texto-info">
+                  <p className="">Elige la pizza que más te guste</p>
+                </div>
               </div>
+              {/* fin card */}
             </div>
-            {/* fin card */}
-          </div>
-          {/* fin columna */}
+            {/* fin columna */}
 
-          <div className="col">
-            <div className="">
-              <img
-                src="https://pbs.twimg.com/profile_images/732346720479248389/x106Whv9_400x400.jpg"
-                className="card-img-top"
-                alt="..."
-              />
-              <div className="card-body">
-                <p className="card-text">Texto explicando el proceso</p>
+            <div className="col">
+              <div className="">
+                <img
+                  src="https://pbs.twimg.com/profile_images/732346720479248389/x106Whv9_400x400.jpg"
+                  className="card-img-top"
+                  alt="..."
+                />
+                <div className="texto-info">
+                  <p className="">Valora la receta y comparte tu opinión</p>
+                </div>
               </div>
+              {/* fin card */}
             </div>
-            {/* fin card */}
+            {/* fin columna */}
           </div>
-          {/* fin columna */}
+          {/* fin show info */}
         </div>
-      </div>
-      {/* fin show info */}
+      </section>
 
-      <div>
+      <section className="login-section">
+        <h2 className="h2home">Regístrate y encuentra de tu pizza ideal</h2>
         <Register />
-      </div>
+      </section>
     </>
   );
 };
