@@ -56,7 +56,7 @@ class Ingredient(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(), unique=False, nullable=False)
     description = db.Column(db.String(), unique=False, nullable=False)
-    ingredient_image = db.Column(db.String(), unique=False, nullable=False)
+    ingredient_image = db.Column(db.String(), unique=False, nullable=True)
 
     recipe_relationship = db.relationship('Recipe', backref='ingredient', lazy=True)
 
