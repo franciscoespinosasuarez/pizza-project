@@ -12,6 +12,31 @@ from flask_jwt_extended import JWTManager
 api = Blueprint('api', __name__)
 
 
+# Create a route to authenticate your users and return JWTs. The
+# create_access_token() function is used to actually generate the JWT.
+@api.route("/login", methods=["POST"])
+def login():
+    email = request.json.get("email", None)
+    password = request.json.get("password", None)
+    
+
+    user = User.query.filter_by(email=email, password=password).first()
+    if not user:
+         return jsonify({"message": "El usuario no fue encontrado"}), 401
+
+
+# CREACIÓN DE TOKEN
+    token = create_access_token(identity=user.id)
+
+    data_response = {
+        "email": user.email,
+        "password":user.password,
+        "token":token
+    }
+
+    return jsonify(data_response), 200 
+
+
 #PIZZA -------------------->
 @api.route('/pizza', methods=['GET', 'POST'])
 def get_post_pizza():

@@ -26,6 +26,8 @@ const Layout = () => {
                     <Routes>
                         {/* si no hay login, la main es login y te direcciona a él  y cambiar HOME por main*/}
                         <Route element={<Filterpiz />} path="/" />
+                        <Route element={<Home />} path="login" />
+
                         {/* <Route element={<Register />} path="/register" />
                         <Route element={<Login />} path="/login" /> 
                         <Route element={<Info-pizza />} path="/pizzas/:theid"/>
