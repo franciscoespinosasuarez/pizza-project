@@ -10,6 +10,12 @@ import injectContext from "./store/appContext";
 
 import { Navbar } from "./component/navbar";
 import { Footer } from "./component/footer";
+import { ShowPizza } from "./pages/showpizza";
+import { Mail } from "./pages/mail";
+import { EditPizza } from "./pages/editpizza";
+import { Home } from "./pages/main";
+import { NewPizza } from "./pages/newpizza"; 
+
 
 //create your first component
 const Layout = () => {
@@ -25,14 +31,17 @@ const Layout = () => {
                 <ScrollToTop>
                     <Routes>
                         {/* si no hay login, la main es login y te direcciona a él  y cambiar HOME por main*/}
-                        <Route element={<Filterpiz />} path="/" />
-                        <Route element={<Home />} path="login" />
-
+                        <Route element={<Home />} path="/" />
+                        {/* <Route element={<Home />} path="login" /> */}
+                        <Route element={<ShowPizza />} path="/pizzas"/>
+                        <Route element={<Filterpiz />} path="/filter"/>
+                        <Route element={<EditPizza />} path="/editpizza" />
+                        <Route element={<NewPizza />} path="/newpizza" />
+                        <Route element={<Demo />} path="/demo" />
                         {/* <Route element={<Register />} path="/register" />
                         <Route element={<Login />} path="/login" /> 
                         <Route element={<Info-pizza />} path="/pizzas/:theid"/>
                         <Route element={<Mis-pizzas />} path="/my-pizzas" />
-                        <Route element={<Crear-pizza />} path="/create-pizza" />
                         <Route element={<Edit-pizza />} path="/pizzas/:theid" /> se reutiliza y si eres el "creador" te deja editarla
                         <Route element={<User-menu />} path="/user/:theid" />
                         <Route element={<Change-password />} path="/change-password" /> */}
