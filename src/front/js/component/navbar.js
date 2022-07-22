@@ -18,13 +18,13 @@ export const Navbar = () => {
 				<Link to="/demo">
 					<	img className="pizza-fav icons" src={PizzaFav}/>
 					</Link>
-					<Link to="/demo">
+					<Link to="/newpizza">
 						<img className="pizza-fav icons" src={addPizza}/>
 					</Link>
 					<Link to="/demo">
 						<img className="my-user" src={myUser}/>
 					</Link>
-					<Link to="/demo">
+					<Link to="/">
 						<img className="log-out icons" src={LogOut}/>
 					</Link>
 				</div>

@@ -1,6 +1,8 @@
 import React, { useContext } from "react";
 import { FilterIngredient } from "../component/filteringredient/filteringredient";
 import { useNavigate } from 'react-router-dom';
+import {Navbar} from "../component/navbar"
+
 
 export const Filterpiz = () =>{
     const navigate = useNavigate();
@@ -36,6 +38,10 @@ export const Filterpiz = () =>{
 
 
     return(
+        <>
+        <Navbar />
         <FilterIngredient />
+        </>
+
     )
 }

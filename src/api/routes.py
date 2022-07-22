@@ -12,6 +12,37 @@ import bcrypt
 
 api = Blueprint('api', __name__)
 
+# CLOUDINARY
+import cloudinary
+import cloudinary.uploader
+import cloudinary.api
+
+cloudinary.config( 
+  cloud_name = "dff57mtn0", 
+  api_key = "226259836625147", 
+  api_secret = "92ugR3DQBT5EDr32Ncen0Z5WyCc" 
+)
+
+# cloudinary routes
+
+# @api.route('/user_upload_image', methods=['POST'])
+# def upload_img():
+#     image_to_load = request.files["file"]
+
+#     if not image_to_load:
+#         return jsonify("imagen no existe")
+
+#     result = cloudinary.uploader.upload(image_to_load)
+#     print(result)
+#     url = result["url"]
+#     print("esto es", url)
+#     user_image = User(perfil_image=url)
+
+#     db.session.add(user_image)
+#     db.session.commit()
+
+#     return jsonify(image.serialize())
+
 
 # Create a route to authenticate your users and return JWTs. The
 # create_access_token() function is used to actually generate the JWT.
@@ -36,20 +67,63 @@ def get_hello():
 #     return jsonify(data_response), 200
 
 
-#PIZZA -------------------->
-@api.route('/pizza', methods=['GET', 'POST'])
-def get_post_pizza():
-    if request.method == 'GET':
-        pizza = Pizza.query.all()
-        all_pizza = list(map(lambda pizza: pizza.serialize(), pizza))
-        return jsonify(all_pizza), 201
+# E-MAIL PYTHON FLASK
 
-    if request.method == 'POST':
-        body = request.get_json()
-        pizza = Pizza(id=body["id"], name=body["name"])
-        db.session.add(pizza)
-        db.session.commit()
-        return jsonify(pizza.serialize()), 201
+app = Flask(__name__)
+
+app.config['MAIL_SERVER']='smtp.gmail.com'
+app.config['MAIL_PORT'] = 465
+app.config['MAIL_USERNAME'] = 'pizzapjsn@gmail.com'
+app.config['MAIL_PASSWORD'] = 'franjesus123'
+app.config['MAIL_USE_TLS'] = False
+app.config['MAIL_USE_SSL'] = True
+mail = Mail(app)
+
+@app.route("/mail", methods=["POST"])
+def index():
+    msg = Message('Hello', sender = 'pizzapjsn@gmail.com', recipients = ['jesus8.mb@gmail.com'])
+    msg.body = "<Tu contraseña temporal es >" 
+    mail.send(msg)
+    return "Sent"
+
+if __name__ == '__main__':
+   app.run(debug = True)
+
+#_____________________PIZZA ___________________
+@api.route('/pizza' , methods=['GET'])
+def list_pizza():
+
+    pizza = Pizza.query.all()
+    all_pizza = list(map(lambda pizza: pizza.serialize(),pizza))
+    return jsonify(all_pizzas)
+
+@api.route('/pizza', methods=['POST'])
+@jwt_required()
+def add_pizza():
+
+    dataUser = get_jwt_identity()
+    body = request.get_json()
+    
+# cloudinary
+
+    image_to_load = request.files["perfil_image"]
+
+    if not image_to_load:
+        return jsonify("imagen no existe")
+
+    result = cloudinary.uploader.upload(image_to_load)
+    print(result)
+    url = result["url"]
+    print("esto es", url)
+    # user_image = User(perfil_image=url)
+
+        # cloudinary
+
+    pizza = Pizza(user_id=dataUser["id"], category_id=int(body["category"]),pizza_image=body["pizza_image"],name=body["name"],recipe=body['recipe'])
+
+    db.session.add(pizza)
+    db.session.commit()
+    return jsonify("ok"), 201
 
 @api.route('/pizza/<int:pizza_id>', methods=['GET', 'PUT', 'DELETE'])
 def single_pizza(pizza_id):
@@ -62,15 +136,17 @@ def single_pizza(pizza_id):
 
     if request.method == 'PUT':
         pizza = Pizza.query.get(pizza_id)
-        if pizza is None:
-            raise APIException("No existe esta pizza", 404)
+
         body = request.get_json()
 
-        if not("id" in body):
-            raise APIException("id de la pizza no encontrada", 404)
+        if "name" in body:
+            pizza.name = body['name']
+        elif "recipe" in body:
+            pizza.recipe = body['recipe']
+        elif "pizza_image" in body:
+            pizza.pizza_image = body['pizza_image']
 
-        pizza.id = body["id"]
-        pizza.name = body["name"]
+
         db.session.commit()
 
         return jsonify(pizza.serialize())
@@ -108,6 +184,27 @@ def get_post_user():
         db.session.add(user)
         db.session.commit()
         return jsonify(data_response), 201
+
+        # cloudinary
+
+        image_to_load = request.files["perfil_image"]
+
+        if not image_to_load:
+            return jsonify("imagen no existe")
+
+        result = cloudinary.uploader.upload(image_to_load)
+        print(result)
+        url = result["url"]
+        print("esto es", url)
+        # user_image = User(perfil_image=url)
+
+        # cloudinary
+        user = User(perfil_image=url, name=body["name"], email=body["email"], password=body["password"], user_name=body["user_name"])
+        db.session.add(user)
+        db.session.commit()
+
+
+        return jsonify(user.serialize()), 201
 
 @api.route('/user/<int:user_id>', methods=['GET', 'PUT', 'DELETE'])
 def single_user(user_id):
