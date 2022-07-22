@@ -24,9 +24,59 @@ cloudinary.config(
 )
 
 
+# @api.route('/user_upload_image', methods=['POST'])
+# def upload_img():
+#     image_to_load = request.files["file"]
 
-app = Flask(__name__)
+#     if not image_to_load:
+#         return jsonify("imagen no existe")
 
+#     result = cloudinary.uploader.upload(image_to_load)
+#     print(result)
+#     url = result["url"]
+#     print("esto es", url)
+#     user_image = User(perfil_image=url)
+
+#     db.session.add(user_image)
+#     db.session.commit()
+
+#     return jsonify(image.serialize())
+
+
+# Create a route to authenticate your users and return JWTs. The
+# create_access_token() function is used to actually generate the JWT.
+
+
+
+@api.route("hello", methods=["GET"])
+def get_hello():
+    dictionary = {
+        "message": "hello world"
+    }
+    return jsonify((dictionary))
+
+#CREACIÓN DE USUARIOS
+
+# @api.route('/registro', methods = ['POST'] )
+# def create_user():
+#     data_response = {
+#         "mensaje": "Creando usuario"
+#     }
+
+#     return jsonify(data_response), 200
+
+
+
+# app = Flask(__name__)
+# @app.route("/mail", methods=["POST"])
+# def index():
+#     msg = Message('Hello', sender = 'pizzapjsn@gmail.com', recipients = ['jesus8.mb@gmail.com'])
+#     msg.body = "<Tu contraseña temporal es >" 
+#     mail.send(msg)
+#     return "Sent"
+
+# if __name__ == '__main__':
+#    app.run(debug = True)
 
 #_____________________PIZZA ___________________
 @api.route('/pizza' , methods=['GET'])
@@ -58,7 +108,7 @@ def add_pizza():
 
         # cloudinary
 
-    pizza = Pizza(user_id=dataUser["id"], category_id=int(body["category"]),pizza_image=body["pizza_image"],name=body["name"],recipe=body['recipe'])
+    pizza = Pizza(user_id=dataUser["id"], category_id=int(body["category"]),pizza_image=url,name=body["name"],recipe=body['recipe'])
 
     db.session.add(pizza)
     db.session.commit()
@@ -107,42 +157,31 @@ def get_post_user():
         user = User.query.all()
         all_user = list(map(lambda user: user.serialize(), user))
         return jsonify(all_user), 201
-
     if request.method == 'POST':
         body = request.get_json()
         password = request.json.get('password')
         #user = User(id=body["id"], name=body["name"])
-        
         hashed = bcrypt.hashpw(password.encode('utf-8'), bcrypt.gensalt())
         user = User(email=body["email"], password=hashed.decode('utf8'), name=body["name"], user_name=body["user_name"])
-
-        
         data_response = {
         "mensaje": "usuario creado correctamente"
     }
         db.session.add(user)
         db.session.commit()
         return jsonify(data_response), 201
-
         # cloudinary
-
         image_to_load = request.files["perfil_image"]
-
         if not image_to_load:
             return jsonify("imagen no existe")
-
         result = cloudinary.uploader.upload(image_to_load)
         print(result)
         url = result["url"]
         print("esto es", url)
         # user_image = User(perfil_image=url)
-
         # cloudinary
         user = User(perfil_image=url, name=body["name"], email=body["email"], password=body["password"], user_name=body["user_name"])
         db.session.add(user)
         db.session.commit()
-
-
         return jsonify(user.serialize()), 201
 
 @api.route('/user/<int:user_id>', methods=['GET', 'PUT', 'DELETE'])

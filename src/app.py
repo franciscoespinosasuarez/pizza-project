@@ -12,6 +12,7 @@ from api.routes import api
 from api.admin import setup_admin
 from api.commands import setup_commands
 from flask_jwt_extended import JWTManager
+from flask_mail import Mail, Message
 
 
 #from models import Person
@@ -21,6 +22,14 @@ static_file_dir = os.path.join(os.path.dirname(os.path.realpath(__file__)), '../
 app = Flask(__name__)
 app.url_map.strict_slashes = False
 
+# E-MAIL PYTHON FLASK
+app.config['MAIL_SERVER']='smtp.mailtrap.io'
+app.config['MAIL_PORT'] = 2525
+app.config['MAIL_USERNAME'] = 'c7f4be1dc28d00'
+app.config['MAIL_PASSWORD'] = 'a190b1b2d69fdb'
+app.config['MAIL_USE_TLS'] = True
+app.config['MAIL_USE_SSL'] = False
+mail = Mail(app)
 
 # Setup the Flask-JWT-Extended extension
 app.config["JWT_SECRET_KEY"] = os.environ.get('JWT_SECRET')
@@ -72,6 +81,13 @@ def serve_any_other_file(path):
     response.cache_control.max_age = 0 # avoid cache memory
     return response
 
+
+@app.route("/send_message")
+def send_message():
+    msg = Message('Hello', sender='pizzapjsn@gmail.com', recipients=['jesus8.mb@gmail.com'])
+    msg.body = "prueba" 
+    mail.send(msg)
+    return "Sent"
 
 # this only runs if `$ python src/main.py` is executed
 if __name__ == '__main__':
