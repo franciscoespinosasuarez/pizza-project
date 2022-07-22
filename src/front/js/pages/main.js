@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { Context } from "../store/appContext";
 import { PizzaCard } from "../component/pizzacard/pizzacard";
 import rigoImageUrl from "../../img/rigo-baby.jpg";
-
+import { useState } from "react";
 import Login from "../component/loginform/loginform";
 import Register from "../component/registerform/registerform";
 import { Navbar } from "../component/navbar";
@@ -88,7 +88,7 @@ export const Home = () => {
 
       <section className="login-section">
         <h2 className="h2home">Regístrate y encuentra de tu pizza ideal</h2>
-        <Register />
+        <Register/>
       </section>
     </>
   );

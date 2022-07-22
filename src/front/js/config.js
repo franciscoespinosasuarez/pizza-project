@@ -1,5 +1,5 @@
 const config = {
-    hostname: "https://3001-franciscoes-pizzaprojec-mpbjtd3k0dv.ws-eu51.gitpod.io/" 
+    hostname: "https://3001-franciscoes-pizzaprojec-p6abymg56kx.ws-eu54.gitpod.io" 
 }
 
 export default config

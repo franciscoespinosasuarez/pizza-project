@@ -1,12 +1,13 @@
 import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import ScrollToTop from "./component/scrollToTop";
-
+import { Home } from "./pages/main";
 import { Main } from "./pages/main";
 import { Filterpiz } from "./pages/filterpiz"
 import { Demo } from "./pages/demo";
 import { Single } from "./pages/single";
 import injectContext from "./store/appContext";
+
 
 import { Navbar } from "./component/navbar";
 import { Footer } from "./component/footer";
@@ -25,8 +26,8 @@ const Layout = () => {
                 <ScrollToTop>
                     <Routes>
                         {/* si no hay login, la main es login y te direcciona a él  y cambiar HOME por main*/}
-                        <Route element={<Filterpiz />} path="/" />
-                        <Route element={<Home />} path="login" />
+                        <Route element={<Filterpiz />} path="/filter" />
+                        <Route element={<Home />} path="/" />
 
                         {/* <Route element={<Register />} path="/register" />
                         <Route element={<Login />} path="/login" /> 

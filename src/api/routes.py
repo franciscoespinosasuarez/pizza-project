@@ -8,33 +8,32 @@ from flask_jwt_extended import create_access_token
 from flask_jwt_extended import get_jwt_identity
 from flask_jwt_extended import jwt_required
 from flask_jwt_extended import JWTManager
+import bcrypt
 
 api = Blueprint('api', __name__)
 
 
 # Create a route to authenticate your users and return JWTs. The
 # create_access_token() function is used to actually generate the JWT.
-@api.route("/login", methods=["POST"])
-def login():
-    email = request.json.get("email", None)
-    password = request.json.get("password", None)
-    
-
-    user = User.query.filter_by(email=email, password=password).first()
-    if not user:
-         return jsonify({"message": "El usuario no fue encontrado"}), 401
 
 
-# CREACIÓN DE TOKEN
-    token = create_access_token(identity=user.id)
 
-    data_response = {
-        "email": user.email,
-        "password":user.password,
-        "token":token
+@api.route("hello", methods=["GET"])
+def get_hello():
+    dictionary = {
+        "message": "hello world"
     }
+    return jsonify((dictionary))
 
-    return jsonify(data_response), 200 
+#CREACIÓN DE USUARIOS
+
+# @api.route('/registro', methods = ['POST'] )
+# def create_user():
+#     data_response = {
+#         "mensaje": "Creando usuario"
+#     }
+
+#     return jsonify(data_response), 200
 
 
 #PIZZA -------------------->
@@ -96,10 +95,19 @@ def get_post_user():
 
     if request.method == 'POST':
         body = request.get_json()
-        user = User(id=body["id"], name=body["name"])
+        password = request.json.get('password')
+        #user = User(id=body["id"], name=body["name"])
+        
+        hashed = bcrypt.hashpw(password.encode('utf-8'), bcrypt.gensalt())
+        user = User(email=body["email"], password=hashed.decode('utf8'), name=body["name"], user_name=body["user_name"])
+
+        
+        data_response = {
+        "mensaje": "usuario creado correctamente"
+    }
         db.session.add(user)
         db.session.commit()
-        return jsonify(user.serialize()), 201
+        return jsonify(data_response), 201
 
 @api.route('/user/<int:user_id>', methods=['GET', 'PUT', 'DELETE'])
 def single_user(user_id):
@@ -133,6 +141,29 @@ def single_user(user_id):
         db.session.commit()
 
         return jsonify(user.serialize())
+
+#LOGIN Y CREACIÓN DE TOKEN
+@api.route("/login", methods=["POST"])
+def login():
+    email = request.json.get("email", None)
+    password = request.json.get("password", None)
+
+    user = User.query.filter_by(email=email).first()
+
+    if not user:
+        return jsonify({"message": "El usuario no fue encontrado"}), 401
+
+    hashed_pw = bcrypt.checkpw(password.encode('utf-8'), user.password.encode('utf-8'))
+    
+    if hashed_pw is False: 
+        return jsonify({"message": "Contraseña incorrecta"})
+
+
+    # CREACIÓN DE TOKEN
+    access_token = create_access_token(identity=email)
+
+
+    return jsonify(access_token=access_token), 200         
 
 #INGREDIENT -------------------->
 @api.route('/ingredient', methods=['GET', 'POST'])
@@ -292,6 +323,7 @@ def get_post_favorite():
         return jsonify(favorite.serialize()), 201
 
 @api.route('/favorite/<int:favorite_id>', methods=['GET', 'PUT', 'DELETE'])
+
 def single_favorite(favorite_id):
     if request.method == 'GET':
         favorite = Favorite.query.get(favorite_id)
@@ -323,21 +355,3 @@ def single_favorite(favorite_id):
         db.session.commit()
 
         return jsonify(favorite.serialize())
-# Create a route to authenticate your users and return JWTs. The
-# create_access_token() function is used to actually generate the JWT.
-@api.route("/token", methods=["POST"])
-def create_token():
-    email = request.json.get("email", None)
-    password = request.json.get("password", None)
-    
-
-    user = User.query.filter_by(email=email, password=password).first()
-    if not user:
-         return jsonify({"message": "El usuario no fue encontrado"}), 401
-
-    data_response = {
-        "email": email,
-        "password":password
-    }
-
-    return jsonify(data_response), 200 
