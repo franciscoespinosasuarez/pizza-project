@@ -33,17 +33,17 @@ const getState = ({ getStore, getActions, setStore }) => {
         };
 
         try {
-          const resp = await fetch(`${config.hostname}/api/token`, opts);
+          const resp = await fetch(`${config.hostname}/api/login`, opts);
           if (resp.status !== 200) {
-            alert("error");
             return false;
           }
 
           const data = await resp.json();
           sessionStorage.setItem("token", data.access_token);
-          setStore({ token: data.access_token });
+          setStore({ token: data.access_token })
+          return true
         } catch (error) {
-          console.log("hay un error");
+          console.log(error);
         }
       },
 

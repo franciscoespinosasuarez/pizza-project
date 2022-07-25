@@ -32,22 +32,23 @@ def validatoken():
 
 # Create a route to authenticate your users and return JWTs. The
 # create_access_token() function is used to actually generate the JWT.
-@api.route("/token", methods=["POST"])
-def create_token():
-    email = request.json.get("email", None)
-    password = request.json.get("password", None)
+
+# @api.route("/token", methods=["POST"])
+# def create_token():
+#     email = request.json.get("email", None)
+#     password = request.json.get("password", None)
     
 
-    user = User.query.filter_by(email=email, password=password).first()
-    if not user:
-         return jsonify({"message": "El usuario no fue encontrado"}), 401
+#     user = User.query.filter_by(email=email, password=password).first()
+#     if not user:
+#          return jsonify({"message": "El usuario no fue encontrado"}), 401
 
-    data_response = {
-        "email": email,
-        "password":password
-    }
+#     data_response = {
+#         "email": email,
+#         "password":password
+#     }
 
-    return jsonify(data_response), 200 
+#     return jsonify(data_response), 200 
 
 
 

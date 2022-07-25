@@ -58,10 +58,10 @@ export const FilterIngredient = () => {
       {/* Submit */}
       <div className="d-flex justify-content-center">
         <div>
-          <button class="button-82-pushable">
-            <span class="button-82-shadow"></span>
-            <span class="button-82-edge"></span>
-            <span class="button-82-front text">
+          <button className="button-82-pushable">
+            <span className="button-82-shadow"></span>
+            <span className="button-82-edge"></span>
+            <span className="button-82-front text">
               Filtrar
             </span>
         </button>

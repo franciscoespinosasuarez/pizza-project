@@ -196,7 +196,59 @@ section {
     border-radius: 10px;
   }
   
-  .editarinfo-button:hover {
+.editarinfo-button:hover {
     background-color: #b1550a;
-  }
+}
   
+    
+
+.boton-registrate:hover{
+    background-color:#b1550a;
+
+
+}
+
+.cabecera-izq{
+    text-align: center;
+}
+
+
+
+/*SHOW INFO*/
+.show-info{
+    display: flex;
+    justify-content:space-evenly;
+    text-align: center;
+    font-size: 20px;
+    font-weight: 400;
+}
+
+.col-show-info{
+
+    width: 500px;
+    
+}
+
+.texto-info {
+    color: #504031;
+    margin: 20px;
+    font-size: 20px;
+
+    
+}
+
+section {
+    padding: 100px 0;
+}
+
+.h2home{
+    text-align: center;
+    margin-bottom: 100px;
+    font-size: 40px;
+    font-weight: 600;
+    color: #b1550a;
+}
+
+.login-section{
+    background-color: white;
+}

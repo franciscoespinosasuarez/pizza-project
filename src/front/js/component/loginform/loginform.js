@@ -1,7 +1,9 @@
 import React, { useState, useContext, useEffect } from "react";
 import { Context } from "../../store/appContext";
+import config from "../../config"
 import "./loginform.css";
 import { useNavigate } from "react-router-dom";
+
 
 function Login() {
   const { store, actions } = useContext(Context);
@@ -30,7 +32,7 @@ function Login() {
       if (er.test(email)) {
         //verificación de que el email está en la database
         fetch(
-          "https://3001-franciscoes-pizzaprojec-p6abymg56kx.ws-eu54.gitpod.io/api/user",
+          `${config}/api/user`,
           {
             method: "GET",
             headers: {
@@ -58,12 +60,7 @@ function Login() {
                 console.log('no funciona')
                 setMensaje(<p className="mensaje mensaje-error">Contraseña incorrecta</p>);
               }
-
-               
- 
-           
-              
-          })
+            })
             
           } else{
             setMensaje(<p className="mensaje mensaje-error">No existe una cuenta con ese email</p>)
