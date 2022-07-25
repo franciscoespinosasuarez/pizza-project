@@ -24,59 +24,28 @@ cloudinary.config(
 )
 
 
-# @api.route('/user_upload_image', methods=['POST'])
-# def upload_img():
-#     image_to_load = request.files["file"]
-
-#     if not image_to_load:
-#         return jsonify("imagen no existe")
-
-#     result = cloudinary.uploader.upload(image_to_load)
-#     print(result)
-#     url = result["url"]
-#     print("esto es", url)
-#     user_image = User(perfil_image=url)
-
-#     db.session.add(user_image)
-#     db.session.commit()
-
-#     return jsonify(image.serialize())
-
 
 # Create a route to authenticate your users and return JWTs. The
 # create_access_token() function is used to actually generate the JWT.
+@api.route("/token", methods=["POST"])
+def create_token():
+    email = request.json.get("email", None)
+    password = request.json.get("password", None)
+    
 
+    user = User.query.filter_by(email=email, password=password).first()
+    if not user:
+         return jsonify({"message": "El usuario no fue encontrado"}), 401
 
-
-@api.route("hello", methods=["GET"])
-def get_hello():
-    dictionary = {
-        "message": "hello world"
+    data_response = {
+        "email": email,
+        "password":password
     }
-    return jsonify((dictionary))
 
-#CREACIÓN DE USUARIOS
-
-# @api.route('/registro', methods = ['POST'] )
-# def create_user():
-#     data_response = {
-#         "mensaje": "Creando usuario"
-#     }
-
-#     return jsonify(data_response), 200
+    return jsonify(data_response), 200 
 
 
 
-# app = Flask(__name__)
-# @app.route("/mail", methods=["POST"])
-# def index():
-#     msg = Message('Hello', sender = 'pizzapjsn@gmail.com', recipients = ['jesus8.mb@gmail.com'])
-#     msg.body = "<Tu contraseña temporal es >" 
-#     mail.send(msg)
-#     return "Sent"
-
-# if __name__ == '__main__':
-#    app.run(debug = True)
 
 #_____________________PIZZA ___________________
 @api.route('/pizza' , methods=['GET'])
@@ -84,7 +53,7 @@ def list_pizza():
 
     pizza = Pizza.query.all()
     all_pizza = list(map(lambda pizza: pizza.serialize(),pizza))
-    return jsonify(all_pizzas)
+    return jsonify(all_pizza)
 
 @api.route('/pizza', methods=['POST'])
 @jwt_required()

@@ -1,8 +1,8 @@
 """empty message
 
-Revision ID: 68e8859c15a2
+Revision ID: 30fcec94414f
 Revises: 
-Create Date: 2022-07-21 21:08:12.740387
+Create Date: 2022-07-24 17:54:34.602101
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = '68e8859c15a2'
+revision = '30fcec94414f'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -24,6 +24,17 @@ def upgrade():
     sa.Column('description', sa.String(), nullable=False),
     sa.Column('ingredient_image', sa.String(), nullable=True),
     sa.PrimaryKeyConstraint('id')
+    )
+    op.create_table('user',
+    sa.Column('id', sa.Integer(), nullable=False),
+    sa.Column('email', sa.String(length=120), nullable=False),
+    sa.Column('password', sa.String(length=300), nullable=False),
+    sa.Column('name', sa.String(length=80), nullable=False),
+    sa.Column('user_name', sa.String(length=80), nullable=False),
+    sa.Column('perfil_image', sa.String(length=250), nullable=True),
+    sa.PrimaryKeyConstraint('id'),
+    sa.UniqueConstraint('email'),
+    sa.UniqueConstraint('user_name')
     )
     op.create_table('pizza',
     sa.Column('id', sa.Integer(), nullable=False),
@@ -70,5 +81,6 @@ def downgrade():
     op.drop_table('favorite')
     op.drop_table('comment')
     op.drop_table('pizza')
+    op.drop_table('user')
     op.drop_table('ingredient')
     # ### end Alembic commands ###

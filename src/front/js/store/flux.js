@@ -47,7 +47,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				  };
 
 				  try {
-					const resp = await fetch("https://3001-franciscoes-pizzaprojec-p6abymg56kx.ws-eu54.gitpod.io/api/login",opts)
+					const resp = await fetch("https://3001-franciscoes-pizzaprojec-jg9wqceqzce.ws-eu53.gitpod.io/api/token",opts)
 					if (resp.status !== 200){
 						console.log("error");
 					  return false;
