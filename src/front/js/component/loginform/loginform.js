@@ -1,21 +1,49 @@
-
-import React, {useState, useContext } from "react";
-import {Context} from "../../store/appContext";
+import React, { useState, useContext, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { Context } from "../../store/appContext";
 
 import "./loginform.css";
 
-
 function Login() {
-  const {store, actions} = useContext(Context);
+  const { store, actions } = useContext(Context);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(false);
 
-
+  const navigate = useNavigate();
   const handleClick = () => {
     actions.login(email, password);
   };
 
+  useEffect(() => {
+    const token = localStorage.token;
+    if (token) {
+      setLoading(true);
+      fetch("/api/validatoken", { //TODO: check it.
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }) //TODO: check it
+        .then((res) => {
+          if (res.status == 200) {
+            return res.json();
+          } else {
+            setLoading(false);
+          }
+        })
+        .then((_) => {
+          navigate("/cualquierpagina"); //TODO: check it
+        });
+    }
+  }, []);
 
+  if (loading) {
+    return (
+      <>
+        <div>Cargando...</div>
+      </>
+    );
+  }
 
   return (
     <>

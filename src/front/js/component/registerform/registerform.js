@@ -1,14 +1,14 @@
 import React from "react";
 import { useState, useContext } from "react";
 import "./registerform.css";
-import { useNavigate } from 'react-router-dom';
-import {Context} from "../../store/appContext";
-
+import { useNavigate } from "react-router-dom";
+import { Context } from "../../store/appContext";
+import config from "../../config.js";
 
 function Register() {
   const [data, setData] = useState({});
   const [mensaje, setMensaje] = useState("");
-  const {store, actions} = useContext(Context);
+  const { store, actions } = useContext(Context);
   const navigate = useNavigate();
 
   const handleChange = (e) => {
@@ -34,10 +34,14 @@ function Register() {
     ) {
       console.log("todos los campos son obligatorios");
       setMensaje(
-        <p className="mensaje mensaje-error">Todos los campos son obligatorios</p>
+        <p className="mensaje mensaje-error">
+          Todos los campos son obligatorios
+        </p>
       );
     } else if (data["password"] !== repeat) {
-      setMensaje(<p className="mensaje mensaje-error">La contraseña no coincide</p>);
+      setMensaje(
+        <p className="mensaje mensaje-error">La contraseña no coincide</p>
+      );
     }
 
     if (data["email"]) {
@@ -45,17 +49,13 @@ function Register() {
       const er =
         /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
       if (er.test(data["email"])) {
-
         //para comprobar si el email existe en la base de datos
-        fetch(
-          "https://3001-franciscoes-pizzaprojec-p6abymg56kx.ws-eu54.gitpod.io/api/user",
-          {
-            method: "GET",
-            headers: {
-              "Content-Type": "application/json",
-            },
-          }
-        )
+        fetch(`${config.hostname}/api/user`, {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        })
           .then((resp) => {
             return resp.json();
           })
@@ -64,35 +64,39 @@ function Register() {
               return user.email;
             });
             if (listaEmail.includes(data["email"])) {
-              setMensaje(<p className="mensaje mensaje-error">Ya hay una cuenta con este email.</p>
+              setMensaje(
+                <p className="mensaje mensaje-error">
+                  Ya hay una cuenta con este email.
+                </p>
               );
             } else {
-        //Si es un email válido, conecta con la base de datos
-                  console.log(data);
-                  fetch('https://3001-franciscoes-pizzaprojec-p6abymg56kx.ws-eu54.gitpod.io/api/user', {
-                      method: 'POST',
-                      body: JSON.stringify(data),
-                      headers: {
-                          'Content-Type': 'application/json'
-                      }
-                  }).then((resp) => {
-                    console.log(resp)
-                  })
+              //Si es un email válido, conecta con la base de datos
+              console.log(data);
+              fetch(`${config.hostname}/api/user`, {
+                method: "POST",
+                body: JSON.stringify(data),
+                headers: {
+                  "Content-Type": "application/json",
+                },
+              }).then((resp) => {
+                console.log(resp);
+              });
 
-                  setMensaje(<p className="mensaje mensaje-exito">Cuenta creada correctamente.</p>)
-                  
-                  actions.login(data["email"], data["password"]).then( () =>{
-                    navigate("/filter")
-                  });
+              setMensaje(
+                <p className="mensaje mensaje-exito">
+                  Cuenta creada correctamente.
+                </p>
+              );
 
-                
-
-        }
+              actions.login(data["email"], data["password"]).then(() => {
+                navigate("/filter");
+              });
+            }
           });
-
-
       } else {
-        setMensaje(<p className="mensaje mensaje-error">Introduce un email válido</p>);
+        setMensaje(
+          <p className="mensaje mensaje-error">Introduce un email válido</p>
+        );
       }
     }
   };

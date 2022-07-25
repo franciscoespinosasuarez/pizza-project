@@ -1,10 +1,12 @@
-body{
-    background-color: #F9EEC9;
-}
+
 
 .list{
     margin: 10px;
     font-size: large;
+}
+
+.filter-container{
+  background-color: #f9eec9
 }
 
 /* --------------input------------ */
@@ -14,8 +16,12 @@ body{
     margin: 10px;
     border: 0;
     border-radius: 5em;
+    width:auto;
+    background-color: rgba(255, 255, 255, 0.801);
     box-sizing: border-box;
     text-align: center;
+    -webkit-box-shadow: 5px 5px 15px 0px rgba(86, 71, 58, 0.123); 
+    box-shadow: 5px 5px 15px 0px rgba(86, 71, 58, 0.219);
 }
 
 .filter-ingredient::placeholder {
@@ -27,7 +33,9 @@ body{
 .selected{
     background-color: rgb(211, 183, 134, .3);
     min-width: 20px;
-    min-height: 70px;
+    width: auto;
+    text-align: center;
+    min-height: 80px;
     margin: 10px;
     border-radius: 4em;
 }
