@@ -45,19 +45,15 @@ const getState = ({ getStore, getActions, setStore }) => {
 				  };
 
 				  try {
-					const resp = await fetch("https://3001-franciscoes-pizzaprojec-p6abymg56kx.ws-eu54.gitpod.io/api/login",opts)
+					const resp = await fetch("https://3001-franciscoes-pizzaprojec-jg9wqceqzce.ws-eu53.gitpod.io/api/token",opts)
 					if (resp.status !== 200){
 					  alert("error");
 					  return false;
 					}
   
 					const data = await resp.json();
-					console.log("viene del back",data)
 					sessionStorage.setItem("token", data.access_token);
 					setStore( {token: data.access_token} )
-					console.log(data.access_token)
-					
-					return true
 				  }
 				  catch(error){
 					console.log("hay un error")
@@ -67,17 +63,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 
 			getMessage: async () => {
-				const store = getStore();
-				const opts = {
-					headers: {
-						"Authorization": "Bearer " + store.token
-					}
-				}
-
-
 				try{
 					// fetching data from the backend
-					const resp = await fetch(process.env.BACKEND_URL + "/api/hello", opts)
+					const resp = await fetch(process.env.BACKEND_URL + "/api/hello")
 					const data = await resp.json()
 					setStore({ message: data.message })
 					// don't forget to return something, that is how the async resolves
