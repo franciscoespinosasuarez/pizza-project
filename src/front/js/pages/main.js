@@ -9,6 +9,32 @@ import { Navbar } from "../component/navbar";
 
 export const Home = () => {
   const { store, actions } = useContext(Context);
+  const [loading, setLoading] = useState(false);
+
+  const navigate = useNavigate();
+  const handleClick = () => {
+    actions.login(email, password);
+  };
+
+  // useEffect(() => {
+  //   const token = localStorage.token;
+  //   if (token) {
+  //     setLoading(true);
+  //     fetch("/api/validatoken", { //TODO: check it.
+  //       headers: {
+  //         Authorization: `Bearer ${token}`,
+  //       },
+  //     }) //TODO: check it
+  //       .then((res) => {
+  //         if (res.status == 200) {
+  //           return res.json();
+  //         } else {
+  //           setLoading(false);
+  //         }
+  //       })
+  //       .then((_) => {
+  //         navigate("/cualquierpagina"); //TODO: check it
+  //       });
 
   return (
     <>

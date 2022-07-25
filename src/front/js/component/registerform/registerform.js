@@ -39,7 +39,8 @@ function Register() {
         </p>
       );
     } else if (data["password"] !== repeat) {
-      setMensaje(
+      console.log(repeat)
+      return setMensaje(
         <p className="mensaje mensaje-error">La contraseña no coincide</p>
       );
     }
@@ -103,45 +104,55 @@ function Register() {
 
   return (
     <>
-      <form>
-        <label>Nombre</label>
+      <form className="login-form">
+        <label className="login-label">Nombre</label>
         <input
+          className="login-input"
           type="text"
           placeholder="Escribe tu nombre"
           name="name"
           onChange={handleChange}
         />
 
-        <label>Nombre de usuario</label>
+        <label className="login-label">Nombre de usuario</label>
         <input
+          className="login-input"
           type="text"
           name="user_name"
           placeholder="Escribe tu nombre de usuario"
           onChange={handleChange}
         />
 
-        <label>Email</label>
+        <label className="login-label">Email</label>
         <input
+          className="login-input"
           type="email"
           placeholder="Escribe tu email"
           name="email"
           onChange={handleChange}
         />
 
-        <label>Contraseña</label>
+        <label className="login-label">Contraseña</label>
         <input
+          className="login-input"
           type="password"
           placeholder="Escribe tu contraseña"
           name="password"
           onChange={handleChange}
         />
 
-        <label>Repetir contraseña</label>
-        <input type="password" placeholder="Repite tu contraseña" id="repeat" />
+        <label className="login-label">Repetir contraseña</label>
+        <input
+          className="login-input"
+          type="password"
+          placeholder="Repite tu contraseña"
+          id="repeat"
+        />
 
         {mensaje}
 
         <button
+          className="login-button"
           onClick={(e) => {
             handleSubmit(e);
           }}

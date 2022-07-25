@@ -204,7 +204,7 @@ def login():
     hashed_pw = bcrypt.checkpw(password.encode('utf-8'), user.password.encode('utf-8'))
     
     if hashed_pw is False: 
-        return jsonify({"message": "Contraseña incorrecta"})
+        return jsonify({"message": "Contraseña incorrecta"}), 401
 
 
     # CREACIÓN DE TOKEN
