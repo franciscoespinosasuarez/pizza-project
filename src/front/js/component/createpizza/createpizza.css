@@ -41,7 +41,33 @@
 
 .create-pizza-btn{
     width: auto;
+    margin-top: 15px;
+    background-color: #ad682f;
+    border: none;
+    color: white;
+    padding: 10px 25px;
+    font-size: 15px;
+    font-weight: 600;
+    text-transform: uppercase;
+    border-radius: 10px;
 }
+
+.form-create-pizza{
+    background-color: #75757500;
+    width: auto;
+    border: none;
+    -webkit-box-shadow: none; 
+    box-shadow: none;
+}
+
+
+/* Modal */
+
+.modal-body, .modal-header{
+    background-color: #f9eec9;
+    border: none;
+}
+
 
 /* imagen */
 

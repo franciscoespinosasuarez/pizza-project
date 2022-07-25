@@ -24,6 +24,11 @@ cloudinary.config(
 )
 
 
+@api.route('/validatoken', methods=['POST'])
+@jwt_required()
+def add_pizza():
+    return jsonify("ok"), 200
+
 
 # Create a route to authenticate your users and return JWTs. The
 # create_access_token() function is used to actually generate the JWT.
@@ -72,7 +77,6 @@ def add_pizza():
     result = cloudinary.uploader.upload(image_to_load)
     print(result)
     url = result["url"]
-    print("esto es", url)
     # user_image = User(perfil_image=url)
 
         # cloudinary

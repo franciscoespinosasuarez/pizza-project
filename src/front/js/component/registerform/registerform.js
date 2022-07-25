@@ -3,6 +3,7 @@ import { useState, useContext } from "react";
 import "./registerform.css";
 import { useNavigate } from "react-router-dom";
 import { Context } from "../../store/appContext";
+import config from "../../config.js";
 
 function Register() {
   const [data, setData] = useState({});
@@ -38,8 +39,7 @@ function Register() {
         </p>
       );
     } else if (data["password"] !== repeat) {
-      console.log(repeat)
-      return setMensaje(
+      setMensaje(
         <p className="mensaje mensaje-error">La contraseña no coincide</p>
       );
     }
@@ -50,15 +50,12 @@ function Register() {
         /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
       if (er.test(data["email"])) {
         //para comprobar si el email existe en la base de datos
-        fetch(
-          "https://3001-franciscoes-pizzaprojec-p6abymg56kx.ws-eu54.gitpod.io/api/user",
-          {
-            method: "GET",
-            headers: {
-              "Content-Type": "application/json",
-            },
-          }
-        )
+        fetch(`${config.hostname}/api/user`, {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        })
           .then((resp) => {
             return resp.json();
           })
@@ -75,16 +72,13 @@ function Register() {
             } else {
               //Si es un email válido, conecta con la base de datos
               console.log(data);
-              fetch(
-                "https://3001-franciscoes-pizzaprojec-p6abymg56kx.ws-eu54.gitpod.io/api/user",
-                {
-                  method: "POST",
-                  body: JSON.stringify(data),
-                  headers: {
-                    "Content-Type": "application/json",
-                  },
-                }
-              ).then((resp) => {
+              fetch(`${config.hostname}/api/user`, {
+                method: "POST",
+                body: JSON.stringify(data),
+                headers: {
+                  "Content-Type": "application/json",
+                },
+              }).then((resp) => {
                 console.log(resp);
               });
 
