@@ -27,7 +27,7 @@ export const Filterpiz = () =>{
         .then((resp) =>{
             return resp.json();
         }).then((resp)=>{
-            console.log(resp)
+           
         })
             
         

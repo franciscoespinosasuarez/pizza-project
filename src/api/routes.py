@@ -71,23 +71,23 @@ def get_hello():
 
 app = Flask(__name__)
 
-app.config['MAIL_SERVER']='smtp.gmail.com'
-app.config['MAIL_PORT'] = 465
-app.config['MAIL_USERNAME'] = 'pizzapjsn@gmail.com'
-app.config['MAIL_PASSWORD'] = 'franjesus123'
-app.config['MAIL_USE_TLS'] = False
-app.config['MAIL_USE_SSL'] = True
-mail = Mail(app)
+# app.config['MAIL_SERVER']='smtp.gmail.com'
+# app.config['MAIL_PORT'] = 465
+# app.config['MAIL_USERNAME'] = 'pizzapjsn@gmail.com'
+# app.config['MAIL_PASSWORD'] = 'franjesus123'
+# app.config['MAIL_USE_TLS'] = False
+# app.config['MAIL_USE_SSL'] = True
+# mail = Mail(app)
 
-@app.route("/mail", methods=["POST"])
-def index():
-    msg = Message('Hello', sender = 'pizzapjsn@gmail.com', recipients = ['jesus8.mb@gmail.com'])
-    msg.body = "<Tu contraseña temporal es >" 
-    mail.send(msg)
-    return "Sent"
+# @app.route("/mail", methods=["POST"])
+# def index():
+#     msg = Message('Hello', sender = 'pizzapjsn@gmail.com', recipients = ['jesus8.mb@gmail.com'])
+#     msg.body = "<Tu contraseña temporal es >" 
+#     mail.send(msg)
+#     return "Sent"
 
-if __name__ == '__main__':
-   app.run(debug = True)
+# if __name__ == '__main__':
+#    app.run(debug = True)
 
 #_____________________PIZZA ___________________
 @api.route('/pizza' , methods=['GET'])
@@ -253,7 +253,7 @@ def login():
     hashed_pw = bcrypt.checkpw(password.encode('utf-8'), user.password.encode('utf-8'))
     
     if hashed_pw is False: 
-        return jsonify({"message": "Contraseña incorrecta"})
+        return jsonify({"message": "Contraseña incorrecta"}), 401
 
 
     # CREACIÓN DE TOKEN
