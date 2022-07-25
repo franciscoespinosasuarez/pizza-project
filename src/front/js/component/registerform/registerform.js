@@ -39,7 +39,8 @@ function Register() {
         </p>
       );
     } else if (data["password"] !== repeat) {
-      setMensaje(
+      console.log(repeat);
+      return setMensaje(
         <p className="mensaje mensaje-error">La contraseña no coincide</p>
       );
     }
