@@ -26,7 +26,7 @@ cloudinary.config(
 
 @api.route('/validatoken', methods=['POST'])
 @jwt_required()
-def add_pizza():
+def validatoken():
     return jsonify("ok"), 200
 
 

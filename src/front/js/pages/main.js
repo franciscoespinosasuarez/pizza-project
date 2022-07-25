@@ -1,7 +1,6 @@
-import React, { useContext } from "react";
+import React, { useContext , useEffect} from "react";
+import {useNavigate} from "react-router-dom"
 import { Context } from "../store/appContext";
-import { PizzaCard } from "../component/pizzacard/pizzacard";
-import rigoImageUrl from "../../img/rigo-baby.jpg";
 import { useState } from "react";
 import Login from "../component/loginform/loginform";
 import Register from "../component/registerform/registerform";
@@ -9,6 +8,39 @@ import { Navbar } from "../component/navbar";
 
 export const Home = () => {
   const { store, actions } = useContext(Context);
+  const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const token = localStorage.token;
+    if (token) {
+      setLoading(true);
+      fetch("/api/validatoken", { //TODO: check it.
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }) //TODO: check it
+        .then((res) => {
+          if (res.status == 200) {
+            return res.json();
+          } else {
+            setLoading(false);
+          }
+        })
+        .then((_) => {
+          navigate("/filter"); //TODO: check it
+        });
+    }
+  }, []);
+
+  if (loading) {
+    return (
+      <>
+        <div>Cargando...</div>
+      </>
+    );
+  }
+
 
   return (
     <>
