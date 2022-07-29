@@ -13,20 +13,20 @@ export const Account = () => {
   const id = sessionStorage.getItem("user_id");
   const params = useParams();
 
-  const [data, setData] = useState({});
+  // const [data, setData] = useState({});
 
-  useEffect(() => {
-    fetch(
-      `https://3001-franciscoes-pizzaprojec-p6abymg56kx.ws-eu54.gitpod.io/api/user/${id}`
-    )
-      .then((res) => {
-        return res.json();
-      })
-      .then((res) => {
-        console.log(res);
-        setData(res);
-      });
-  }, []);
+  // useEffect(() => {
+  //   fetch(
+  //     `${config.hostname}/api/user${id}`
+  //   )
+  //     .then((res) => {
+  //       return res.json();
+  //     })
+  //     .then((res) => {
+  //       console.log(res);
+  //       setData(res);
+  //     });
+  // }, []);
 
   const [imageURLs, setImageURLs] = useState([
     "https://www.weact.org/wp-content/uploads/2016/10/Blank-profile.png",

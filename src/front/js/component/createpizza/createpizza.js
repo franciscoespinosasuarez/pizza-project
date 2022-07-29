@@ -15,6 +15,9 @@ export const CreatePizzaProvisional = () => {
 
   const { store, actions } = useContext(Context);
 
+  //token
+  
+
   // imagenes reactivas
 
   useEffect(() => {
@@ -74,7 +77,7 @@ export const CreatePizzaProvisional = () => {
       {/* FORM  */}
       <form
         className="form-create-pizza"
-        action="https://3001-franciscoes-pizzaprojec-jytudtgtzrc.ws-eu54.gitpod.io/"
+        action="https://3001-franciscoes-pizzaprojec-jytudtgtzrc.ws-eu54.gitpod.io/api/pizza"
         method="post"
         enctype="multipart/form-data"
       >

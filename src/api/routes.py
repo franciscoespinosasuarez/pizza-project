@@ -82,7 +82,11 @@ def add_pizza():
 
         # cloudinary
 
-    pizza = Pizza(user_id=dataUser["id"], category_id=int(body["category"]),pizza_image=url,name=body["name"],recipe=body['recipe'])
+    pizza = Pizza(
+        user_id=dataUser["id"], 
+        category_id=int(body["category"]),
+        pizza_image=url,name=body["name"],
+        recipe=body['recipe'])
 
     db.session.add(pizza)
     db.session.commit()

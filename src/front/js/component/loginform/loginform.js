@@ -3,7 +3,6 @@ import { Context } from "../../store/appContext";
 import { useNavigate } from "react-router-dom";
 import config from "../../config";
 import "./loginform.css";
-import { useNavigate } from "react-router-dom";
 
 function Login() {
   const { store, actions } = useContext(Context);
