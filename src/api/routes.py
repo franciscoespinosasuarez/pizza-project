@@ -186,6 +186,7 @@ def login():
 
     user = User.query.filter_by(email=email).first()
 
+
     if not user:
         return jsonify({"message": "El usuario no fue encontrado"}), 401
 
@@ -199,7 +200,7 @@ def login():
     access_token = create_access_token(identity=email)
 
 
-    return jsonify(access_token=access_token), 200         
+    return jsonify(access_token=access_token, user_id=user.id), 200         
 
 #INGREDIENT -------------------->
 @api.route('/ingredient', methods=['GET', 'POST'])

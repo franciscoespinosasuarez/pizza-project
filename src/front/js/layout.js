@@ -16,6 +16,8 @@ import { EditPizza } from "./pages/editpizza";
 
 import { NewPizza } from "./pages/newpizza"; 
 
+import { Account } from "./pages/my-account";
+
 
 //create your first component
 const Layout = () => {
@@ -37,6 +39,7 @@ const Layout = () => {
                         <Route element={<Filterpiz />} path="/filter"/>
                         <Route element={<EditPizza />} path="/editpizza" />
                         <Route element={<NewPizza />} path="/newpizza" />
+                        <Route element={<Account />} path="/my-account/" />
                         <Route element={<Demo />} path="/demo" />
                         {/* <Route element={<Register />} path="/register" />
                         <Route element={<Login />} path="/login" /> 

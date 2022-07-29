@@ -36,6 +36,6 @@
   border-radius: 10px;
 }
 
-button:hover {
+.login-button:hover {
   background-color: #b1550a;
 }

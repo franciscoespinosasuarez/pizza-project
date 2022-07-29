@@ -3,6 +3,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 		store: {
 			token: null,
 			message: null,
+			user_id: null
 			// demo: [
 			// 	{
 			// 		title: "FIRST",
@@ -28,6 +29,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				if (token && token!= "" && token != undefined) setStore ( {token: token})
 			},
 
+			
 
 
 
@@ -53,8 +55,12 @@ const getState = ({ getStore, getActions, setStore }) => {
   
 					const data = await resp.json();
 					console.log("viene del back",data)
+					const user_id = data.user_id
+					console.log(user_id)
 					sessionStorage.setItem("token", data.access_token);
 					setStore( {token: data.access_token} )
+					sessionStorage.setItem("user_id",user_id);
+					setStore( {user_id: data.user_id})
 					console.log(data.access_token)
 					
 					return true
@@ -62,6 +68,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				  catch(error){
 					console.log(error)
 				  }
+
 			},
 
 

@@ -32,7 +32,7 @@ export const Filterpiz = () =>{
             
         
     } catch{
-        console.log('errorsito papi')
+        
     }
 
 

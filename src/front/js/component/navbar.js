@@ -8,6 +8,12 @@ import Logo from "../../img/logo2.png"
 import myUser from "../../img/my-user.png"
 
 export const Navbar = () => {
+
+	const logOut = () =>{
+		console.log("cerrando sesión")
+		sessionStorage.removeItem("token")
+		sessionStorage.removeItem("user_id")
+	}
 	return (
 		<nav className="navbar navbar-ofi">
 			<div className="container ">
@@ -24,7 +30,7 @@ export const Navbar = () => {
 					<Link to="/demo">
 						<img className="my-user" src={myUser}/>
 					</Link>
-					<Link to="/">
+					<Link to="/" onClick={logOut}>
 						<img className="log-out icons" src={LogOut}/>
 					</Link>
 				</div>
