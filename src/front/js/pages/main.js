@@ -29,7 +29,7 @@ export const Main = () => {
           }
         })
         .then((_) => {
-          navigate("/filter"); //TODO: check it
+          navigate("/home"); //TODO: check it
         });
     }
   }, []);
@@ -46,7 +46,6 @@ export const Main = () => {
   return (
     <>
       <div className="imagen-cabecera">
-        <Navbar />
         <div className="container">
           <div className="cabecera">
             <div className="row cabecera-izq">

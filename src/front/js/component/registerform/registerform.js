@@ -90,7 +90,7 @@ function Register() {
               );
 
               actions.login(data["email"], data["password"]).then(() => {
-                navigate("/filter");
+                navigate("/home");
               });
             }
           });

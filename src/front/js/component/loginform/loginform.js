@@ -56,7 +56,7 @@ function Login() {
               console.log(token)
               if(token &&token!=="" && token!== undefined && token!== null){
                 console.log("funciona");
-                navigate("/filter");
+                navigate("/home");
               } else {
                 console.log('no funciona')
                 setMensaje(<p className="mensaje mensaje-error">Contraseña incorrecta</p>);

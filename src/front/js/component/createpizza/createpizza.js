@@ -74,7 +74,7 @@ export const CreatePizzaProvisional = () => {
       {/* FORM  */}
       <form
         className="form-create-pizza"
-        action="${config.hostname}api/pizza"
+        action="https://3001-franciscoes-pizzaprojec-jytudtgtzrc.ws-eu54.gitpod.io/"
         method="post"
         enctype="multipart/form-data"
       >

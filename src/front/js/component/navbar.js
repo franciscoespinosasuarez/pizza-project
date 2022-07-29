@@ -9,10 +9,8 @@ import myUser from "../../img/my-user.png"
 
 export const Navbar = () => {
 
-	let token =  sessionStorage.getItem("token")
-
-	const logOut = () => {
-		sessionStorage.removeItem()
+	const exit = () => {
+		sessionStorage.removeItem("token")
 	}
 
 	return (
@@ -31,7 +29,7 @@ export const Navbar = () => {
 					<Link to="/demo">
 						<img className="my-user" src={myUser}/>
 					</Link>
-					<Link to="/" onClick={logOut}>
+					<Link to="/" onClick={exit}>
 						<img className="log-out icons" src={LogOut}/>
 					</Link>
 				</div>
