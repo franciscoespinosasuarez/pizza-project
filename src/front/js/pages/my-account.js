@@ -9,11 +9,11 @@ import Login from "../component/loginform/loginform";
 export const Account = () => {
   
   const navigate = useNavigate();
-  const token = sessionStorage.getItem("token");
-  const id = sessionStorage.getItem("user_id");
+  const token = localStorage.getItem("token");
+  const id = localStorage.getItem("user_id");
   const params = useParams();
 
-  // const [data, setData] = useState({});
+  const [data, setData] = useState({});
 
   // useEffect(() => {
   //   fetch(
@@ -34,7 +34,7 @@ export const Account = () => {
 
 
 
-  if (token && token !== undefined && token !== null) {
+  if (token) {
     return (
       <>
         <Navbar />

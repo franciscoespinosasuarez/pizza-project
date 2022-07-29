@@ -15,7 +15,7 @@ export const Navbar = () => {
   return (
     <nav className="navbar navbar-ofi">
       <div className="container ">
-        <Link to="/">
+        <Link to="/home">
           <img className="logo" src={Logo} />
         </Link>
         <div className="ml-auto">
@@ -25,7 +25,7 @@ export const Navbar = () => {
           <Link to="/newpizza">
             <img className="pizza-fav icons" src={addPizza} />
           </Link>
-          <Link to="/demo">
+          <Link to="/my-account">
             <img className="my-user" src={myUser} />
           </Link>
           <Link to="/" onClick={exit}>
