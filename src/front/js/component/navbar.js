@@ -9,11 +9,12 @@ import myUser from "../../img/my-user.png"
 
 export const Navbar = () => {
 
-	const logOut = () =>{
-		console.log("cerrando sesión")
-		sessionStorage.removeItem("token")
-		sessionStorage.removeItem("user_id")
+	let token =  sessionStorage.getItem("token")
+
+	const logOut = () => {
+		sessionStorage.removeItem()
 	}
+
 	return (
 		<nav className="navbar navbar-ofi">
 			<div className="container ">

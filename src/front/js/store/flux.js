@@ -6,6 +6,10 @@ const getState = ({ getStore, getActions, setStore }) => {
       token: null,
       message: null,
       itemArray: [],
+      pizzas: [],
+      users: [],
+
+
     },
     actions: {
       // Use getActions to call a function within a fuction
@@ -86,6 +90,18 @@ const getState = ({ getStore, getActions, setStore }) => {
           }
         }
         return false;
+      },
+
+
+      //Carga las pizzas:
+
+      getPizzas: async () => {
+        const res = await fetch(`${config.hostname}/api/pizza`, {
+          method: "GET",
+        });
+
+        const data = await res.json();
+        await setStore({ pizzas: data})
       },
 
       //demo

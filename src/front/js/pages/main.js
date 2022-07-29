@@ -6,7 +6,8 @@ import Login from "../component/loginform/loginform";
 import Register from "../component/registerform/registerform";
 import { Navbar } from "../component/navbar";
 
-export const Home = () => {
+
+export const Main = () => {
   const { store, actions } = useContext(Context);
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();

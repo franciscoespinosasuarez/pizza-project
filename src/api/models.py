@@ -13,7 +13,7 @@ class User(db.Model):
 
 
     def __repr__(self):
-        return '<User %r>' % self.id
+        return '<User %r>' % self.user_name
 
     def serialize(self):
         return {
@@ -44,8 +44,8 @@ class Pizza(db.Model):
         return {
             "id": self.id,
             "name": self.name,
-            "pizza_image": self.pizza_image
-            # "user": user_relationship.serialize()
+            "pizza_image": self.pizza_image,
+            "user": self.user.user_name
         }
 
 

@@ -1,7 +1,7 @@
 import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import ScrollToTop from "./component/scrollToTop";
-import { Home } from "./pages/main";
+import { Home } from "./pages/home";
 import { Main } from "./pages/main";
 import { Filterpiz } from "./pages/filterpiz"
 import { Demo } from "./pages/demo";
@@ -13,6 +13,7 @@ import { Footer } from "./component/footer";
 import { ShowPizza } from "./pages/showpizza";
 import { Mail } from "./pages/mail";
 import { EditPizza } from "./pages/editpizza";
+import { Prueba } from "./pages/prueba";
 
 import { NewPizza } from "./pages/newpizza"; 
 
@@ -33,7 +34,7 @@ const Layout = () => {
                 <ScrollToTop>
                     <Routes>
                         {/* si no hay login, la main es login y te direcciona a él  y cambiar HOME por main*/}
-                        <Route element={<Home />} path="/" />
+                        <Route element={<Main />} path="/" />
                         {/* <Route element={<Home />} path="login" /> */}
                         <Route element={<ShowPizza />} path="/pizzas"/>
                         <Route element={<Filterpiz />} path="/filter"/>
@@ -41,6 +42,8 @@ const Layout = () => {
                         <Route element={<NewPizza />} path="/newpizza" />
                         <Route element={<Account />} path="/my-account/" />
                         <Route element={<Demo />} path="/demo" />
+                        <Route element={<Home />} path="/home" />
+                        <Route element={<Prueba />} path="/prueba" />
                         {/* <Route element={<Register />} path="/register" />
                         <Route element={<Login />} path="/login" /> 
                         <Route element={<Info-pizza />} path="/pizzas/:theid"/>
