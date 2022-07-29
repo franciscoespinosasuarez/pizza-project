@@ -1,16 +1,15 @@
 import React, { useState, useContext } from "react";
 import { Context } from "../../store/appContext";
 import { useNavigate } from "react-router-dom";
-import config from "../../config"
+import config from "../../config";
 import "./loginform.css";
 import { useNavigate } from "react-router-dom";
-
 
 function Login() {
   const { store, actions } = useContext(Context);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  
+
   const navigate = useNavigate();
   const [mensaje, setMensaje] = useState("");
 
@@ -19,11 +18,7 @@ function Login() {
     setMensaje("");
 
     if (email === "" || password === "") {
-      setMensaje(
-        <p className="mensaje mensaje-error">
-          Todos los campos son obligatorios
-        </p>
-      );
+      setMensaje("Todos los campos son obligatorios");
       return console.log("todos los campos son obligatorios");
     }
 
@@ -31,52 +26,28 @@ function Login() {
       const er =
         /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
       if (er.test(email)) {
-        //verificación de que el email está en la database
-        fetch(
-          `${config}/api/user`,
-          {
-            method: "GET",
-            headers: {
-              "Content-Type": "application/json",
-            },
+        actions.login(email, password).then((data) => {
+          if (data.message) {
+            setMensaje(data.message);
+            return;
           }
-        ).then((resp) => {
-          return resp.json();
-        })
-        .then((resp) => {
-          const listaEmail = resp.map((user) => {
-            return user.email;
-          });
-          if (listaEmail.includes(email)) {
-            //llamada a función login (en flux) y creación de token
-            actions.login(email, password).then(()=>{
-              const token = sessionStorage.getItem("token");
-              //BUSCAR LA FORMA DE QUE HAGA EL REDIRECT CUANDO SE PRESIONA EL BOTÓN LOGIN
 
-              console.log(token)
-              if(token &&token!=="" && token!== undefined && token!== null){
-                console.log("funciona");
-                navigate("/home");
-              } else {
-                console.log('no funciona')
-                setMensaje(<p className="mensaje mensaje-error">Contraseña incorrecta</p>);
-              }
-            })
-            
-          } else{
-            setMensaje(<p className="mensaje mensaje-error">No existe una cuenta con ese email</p>)
-            
+          const token = localStorage.getItem("token");
+          //BUSCAR LA FORMA DE QUE HAGA EL REDIRECT CUANDO SE PRESIONA EL BOTÓN LOGIN
+
+          console.log(token);
+          if (token) {
+            console.log("funciona");
+            navigate("/home");
+          } else {
+            console.log("no funciona");
+            setMensaje("Contraseña incorrecta");
           }
-        })
-       }else {
-        setMensaje(
-          <p className="mensaje mensaje-error">Introduce un email válido</p>
-        );
+        });
+      } else {
+        setMensaje("Introduce un email válido");
       }
     }
-
-
-
   };
 
   return (
@@ -102,7 +73,9 @@ function Login() {
           <button className="login-button" onClick={handleClick}>
             Login
           </button>
-          {mensaje}
+          <p hidden={!mensaje} className="mensaje mensaje-error">
+            {mensaje}
+          </p>
         </form>
       </div>
     </>

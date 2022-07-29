@@ -4,12 +4,9 @@ const getState = ({ getStore, getActions, setStore }) => {
   return {
     store: {
       token: null,
-      message: null,
       itemArray: [],
       pizzas: [],
       users: [],
-
-
     },
     actions: {
       // Use getActions to call a function within a fuction
@@ -18,7 +15,7 @@ const getState = ({ getStore, getActions, setStore }) => {
       },
 
       syncTokenFromSessionStore: () => {
-        const token = sessionStorage.getItem("token");
+        const token = localStorage.getItem("token");
         if (token && token != "" && token != undefined)
           setStore({ token: token });
       },
@@ -38,15 +35,20 @@ const getState = ({ getStore, getActions, setStore }) => {
 
         try {
           const resp = await fetch(`${config.hostname}/api/login`, opts);
-          if (resp.status !== 200) {
-            return false;
+
+          if (![200, 401].includes(resp.status)) {
+            return null;
           }
 
           const data = await resp.json();
-          sessionStorage.setItem("token", data.access_token);
-          setStore({ token: data.access_token })
-          
-          return true
+          console.log({ data });
+
+          if (resp.status == 200) {
+            localStorage.setItem("token", data.access_token);
+            setStore({ token: data.access_token });
+          }
+
+          return data;
         } catch (error) {
           console.log(error);
         }
@@ -92,7 +94,6 @@ const getState = ({ getStore, getActions, setStore }) => {
         return false;
       },
 
-
       //Carga las pizzas:
 
       getPizzas: async () => {
@@ -101,22 +102,10 @@ const getState = ({ getStore, getActions, setStore }) => {
         });
 
         const data = await res.json();
-        await setStore({ pizzas: data})
+        await setStore({ pizzas: data });
       },
 
       //demo
-      getMessage: async () => {
-        try {
-          // fetching data from the backend
-          const resp = await fetch(process.env.BACKEND_URL + "/api/hello");
-          const data = await resp.json();
-          setStore({ message: data.message });
-          // don't forget to return something, that is how the async resolves
-          return data;
-        } catch (error) {
-          console.log("Error loading message from backend", error);
-        }
-      },
       changeColor: (index, color) => {
         //get the store
         const store = getStore();
