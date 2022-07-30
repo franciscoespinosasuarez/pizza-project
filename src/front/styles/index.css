@@ -208,6 +208,17 @@ section {
 
 }
 
+
+.botoncerrar {
+  color: white;
+  background-color: #BB0116;
+  font-weight: bold;
+  border-radius: 5px;
+}
+.modal-footer{
+  background-color: #F5F0C6;
+  border:none;
+}
 .cabecera-izq{
     text-align: center;
 }
