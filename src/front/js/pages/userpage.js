@@ -6,8 +6,26 @@ import config from "../config";
 
 export const Userpage = () => {
 
+  useEffect(() => {
+    const token = localStorage.token;
+    if (token) {
+      fetch("/api/validatoken", {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }) 
+        .then((res) => {
+          console.log(res)
+          if (res.status !== 200) {
+            // return res.json();
+            navigate("/home");
+          }
+        })
+    }
+  }, []);
+
+
     const params = useParams()
-    //esto va a ir fuera cuando haga un fetch a los datos del usuario
 
 
       //useffect para cargar los datos del usuario
@@ -23,6 +41,11 @@ export const Userpage = () => {
           .then(res => setData(res))
       
       },[] )
+
+      if(data.perfil_image==undefined) {
+        data.perfil_image = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRHnPmUvFLjjmoYWAbLTEmLLIRCPpV_OgxCVA&usqp=CAU"
+      }
+      
       
       
  return (

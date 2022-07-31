@@ -23,8 +23,8 @@ cloudinary.config(
   api_secret = "92ugR3DQBT5EDr32Ncen0Z5WyCc" 
 )
 
-
-@api.route('/validatoken', methods=['POST'])
+# He cambiado el metodo de post a get
+@api.route('/validatoken', methods=['GET'])
 @jwt_required()
 def validatoken():
     return jsonify("ok"), 200
@@ -126,6 +126,14 @@ def single_pizza(pizza_id):
         db.session.commit()
 
         return jsonify(pizza.serialize())
+        
+
+@api.route('/pizza/user/<int:id>', methods = ['GET'])
+def pizzabyuser(id):
+
+    pizza = Pizza.query.filter_by(user_id=id)
+    pizza_by_user = list(map(lambda pizza: pizza.serialize(), pizza))
+    return jsonify(pizza_by_user)
 
 
 #USER -------------------->

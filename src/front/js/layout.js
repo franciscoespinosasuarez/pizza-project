@@ -42,7 +42,7 @@ const Layout = () => {
                         <Route element={<Filterpiz />} path="/filter"/>
                         <Route element={<EditPizza />} path="/editpizza" />
                         <Route element={<NewPizza />} path="/newpizza" />
-                        <Route element={<Account />} path="/my-account/" />
+                        <Route element={<Account />} path="/my-account" />
                         <Route element={<Demo />} path="/demo" />
                         <Route element={<Home />} path="/home" />
                         <Route element={<Prueba />} path="/prueba" />

@@ -66,6 +66,7 @@ body {
   color: #504031;
   margin: 20px;
   font-size: 20px;
+  font-weight: 500;
 }
 
 section {
@@ -243,7 +244,7 @@ section {
 .texto-info {
     color: #504031;
     margin: 20px;
-    font-size: 20px;
+    font-size: 25px;
 
     
 }
@@ -262,4 +263,8 @@ section {
 
 .login-section{
     background-color: white;
+}
+
+.seccion-descripcion {
+  background-color: white;
 }

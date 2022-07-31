@@ -10,6 +10,7 @@ import myUser from "../../img/my-user.png";
 export const Navbar = () => {
   const exit = () => {
     localStorage.removeItem("token");
+    localStorage.removeItem("user_id");
   };
 
   return (
@@ -25,7 +26,7 @@ export const Navbar = () => {
           <Link to="/newpizza">
             <img className="pizza-fav icons" src={addPizza} />
           </Link>
-          <Link to="/demo">
+          <Link to="/my-account">
             <img className="my-user" src={myUser} />
           </Link>
           <Link to="/" onClick={exit}>
