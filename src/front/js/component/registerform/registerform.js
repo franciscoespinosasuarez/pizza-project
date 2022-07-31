@@ -89,9 +89,9 @@ function Register() {
                 </p>
               );
 
-              actions.login(data["email"], data["password"]).then(() => {
-                navigate("/home");
-              });
+              // actions.login(data["email"], data["password"]).then(() => {
+              //   navigate("/home");
+              // });
             }
           });
       } else {
