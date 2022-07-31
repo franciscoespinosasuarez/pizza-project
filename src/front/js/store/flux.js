@@ -4,9 +4,11 @@ const getState = ({ getStore, getActions, setStore }) => {
   return {
     store: {
       token: null,
+      user_name:"",
       itemArray: [],
       pizzas: [],
       users: [],
+      user_id: 0,
     },
     actions: {
       // Use getActions to call a function within a fuction
@@ -44,8 +46,11 @@ const getState = ({ getStore, getActions, setStore }) => {
           console.log({ data });
 
           if (resp.status == 200) {
-            localStorage.setItem("token", data.access_token);
-            setStore({ token: data.access_token });
+            localStorage.setItem("token", data);
+            setStore({ token: data });
+           
+            // localStorage.setItem("user_id", data.user_id)
+            // setStore({user_id: data.user_id})
           }
 
           return data;
@@ -54,7 +59,7 @@ const getState = ({ getStore, getActions, setStore }) => {
         }
       },
 
-      // FILTER array
+      // FILTER array para obtener los valores filtrados
       filter_function: (ingredient) => {
         const store = getStore();
         const aux = [...store.itemArray, ingredient];

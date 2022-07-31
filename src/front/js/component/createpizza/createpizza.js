@@ -18,6 +18,32 @@ export const CreatePizzaProvisional = () => {
   //token
   
 
+  //formdata
+
+  // const [data, setData] = useState()
+
+  // const handleSubmit = async (e) => {
+  //   e.preventDefault()
+  //   const token = localStorage.getItem("token")
+
+  //   const formData = new FormData();
+  //   formData.append("file", img);
+  //   formData.append("name", name);
+  //   formData.append("recipe", recipe);
+  //   console.log(formData.get("name"))
+
+
+  //   let resp = await fetch(`${config.hostname}/api/pizza`, {
+  //     method: "POST", 
+  //     body: formData,
+  //     headers: {
+  //       "Content-Type": "Multipart/form-data",
+  //       "Authorization": "Bearer " + token
+  //     }
+  //   })
+
+  // } 
+
   // imagenes reactivas
 
   useEffect(() => {
@@ -29,20 +55,21 @@ export const CreatePizzaProvisional = () => {
 
   const onImageChange = (e) => {
     setImages([...e.target.files]);
+    setImg(e.target.files[0]);
   };
 
-  const sendData = (name, recipe, email, password, pizza_image) => {
-    fetch(`${config.hostname}api/pizza`, {
-      method: "POST",
-      body: JSON.stringify({ name, recipe, email, password, pizza_image }),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    })
-      .then((res) => res)
-      .then((data) => data)
-      .catch((error) => error);
-  };
+  // const sendData = (name, recipe, email, password, pizza_image) => {
+  //   fetch(`${config.hostname}api/pizza`, {
+  //     method: "POST",
+  //     body: JSON.stringify({ name, recipe, email, password, pizza_image }),
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //     },
+  //   })
+  //     .then((res) => res)
+  //     .then((data) => data)
+  //     .catch((error) => error);
+  // };
 
   return (
     <>
@@ -52,7 +79,7 @@ export const CreatePizzaProvisional = () => {
         id="staticBackdrop"
         data-bs-backdrop="static"
         data-bs-keyboard="false"
-        tabindex="-1"
+        tabIndex="-1"
         aria-labelledby="staticBackdropLabel"
         aria-hidden="true"
       >
@@ -77,6 +104,7 @@ export const CreatePizzaProvisional = () => {
       {/* FORM  */}
       <form
         className="form-create-pizza"
+        // onSubmit={handleSubmit}
         action="https://3001-franciscoes-pizzaprojec-jytudtgtzrc.ws-eu54.gitpod.io/api/pizza"
         method="post"
         enctype="multipart/form-data"
@@ -88,6 +116,7 @@ export const CreatePizzaProvisional = () => {
             type="text"
             onChange={(e) => setName(e.target.value)}
             value={name}
+            name="name"
             className="input-pizza-name mt-4"
             placeholder="Nombre de la pizza"
           />
@@ -99,17 +128,17 @@ export const CreatePizzaProvisional = () => {
                 type="file"
                 id="imageUpload"
                 accept=".png, .jpg, .jpeg"
+                name="file"
                 className=""
-                // onChange={(e) => setImg(e.target.files)}
                 onChange={onImageChange}
               />
-              <label className="imageUpload" for="imageUpload">
+              <label className="imageUpload" htmlFor="imageUpload">
                 +
               </label>
             </div>
             <div className="avatar-preview">
-              {imageURLs.map((imageSrc) => (
-                <img src={imageSrc} id="imagePreview" />
+              {imageURLs.map((imageSrc,i) => (
+                <img key={i} src={imageSrc} id="imagePreview" />
               ))}
             </div>
           </div>
@@ -143,6 +172,10 @@ export const CreatePizzaProvisional = () => {
             })}
           </div>
 
+          <input 
+              type="hidden"
+              name="user_id"
+              value={store.user_id} />
           {/* <!-- Text area --> */}
 
           <div>
@@ -150,9 +183,11 @@ export const CreatePizzaProvisional = () => {
               className="m-2 p-1 pizza-textarea"
               rows="4"
               cols="40"
+              type="text"
               placeholder="Inserte aquí la receta"
               onChange={(e) => setRecipe(e.target.value)}
               value={recipe}
+              name="recipe"
             ></textarea>
           </div>
 

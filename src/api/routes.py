@@ -62,15 +62,23 @@ def list_pizza():
     return jsonify(all_pizza)
 
 @api.route('/pizza', methods=['POST'])
-@jwt_required()
+# @jwt_required()
 def add_pizza():
 
-    dataUser = get_jwt_identity()
-    body = request.get_json()
+
+    # dataUser = get_jwt_identity()
+    # id = User.query.filter_by(email = dataUser["email"]).first()
+    id = int(request.form["user_id"])
+    # body = request.get_json()
+    nombre = request.form["name"]
+    receta = request.form["recipe"]
     
 # cloudinary
 
-    image_to_load = request.files["perfil_image"]
+    image_to_load = request.files["file"]
+    print("nombre :", nombre )
+    print("image :", image_to_load )
+    print("receta :", receta )
 
     if not image_to_load:
         return jsonify("imagen no existe")
@@ -79,14 +87,14 @@ def add_pizza():
     print(result)
     url = result["url"]
     # user_image = User(perfil_image=url)
-
         # cloudinary
 
     pizza = Pizza(
-        user_id=dataUser["id"], 
-        category_id=int(body["category"]),
-        pizza_image=url,name=body["name"],
-        recipe=body['recipe'])
+        user_id=id,
+        pizza_image=url,
+        name = nombre,
+        recipe = receta)
+    print(">>>>>>>>>>>>5")
 
     db.session.add(pizza)
     db.session.commit()
@@ -126,6 +134,15 @@ def single_pizza(pizza_id):
         db.session.commit()
 
         return jsonify(pizza.serialize())
+
+# Conseguir pizza por el usuario que la creó
+@api.route('/pizza/user/<int:id>', methods = ['GET'])
+def pizzabyuser(id):
+
+    pizza = Pizza.query.filter_by(user_id=id)
+    pizza_by_user = list(map(lambda pizza: pizza.serialize(), pizza))
+    return jsonify(pizza_by_user)
+    
 
 
 #USER -------------------->
@@ -202,7 +219,8 @@ def login():
     password = request.json.get("password", None)
 
     user = User.query.filter_by(email=email).first()
-
+    print(">>>>>>>>>>", email)
+    print(">>>>>>>>>>", user)
 
     if not user:
         return jsonify({"message": "El usuario no fue encontrado"}), 401
@@ -212,12 +230,14 @@ def login():
     if hashed_pw is False: 
         return jsonify({"message": "Contraseña incorrecta"}), 401
 
-
+    data = {
+        "email": email
+    }
     # CREACIÓN DE TOKEN
-    access_token = create_access_token(identity=email)
+    access_token = create_access_token(identity=data)
 
-
-    return jsonify(access_token=access_token, user_id=user.id), 200         
+    return jsonify(access_token)
+    # return jsonify(access_token=access_token, user_id=user.id), 200         
 
 #INGREDIENT -------------------->
 @api.route('/ingredient', methods=['GET', 'POST'])
