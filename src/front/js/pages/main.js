@@ -5,43 +5,44 @@ import { useState } from "react";
 import Login from "../component/loginform/loginform";
 import Register from "../component/registerform/registerform";
 import { Navbar } from "../component/navbar";
+import config from "../config";
+import ingredientesfront from "../../img/ingredientesfront.png"
+import dibujopizza from "../../img/dibujopizza.png"
+import estrellas from "../../img/estrellas.jpg"
 
 
 export const Main = () => {
   const { store, actions } = useContext(Context);
-  const [loading, setLoading] = useState(false);
+  const token = localStorage.token;
+  
   const navigate = useNavigate();
+  const [loading, SetLoading] = useState(false)
 
   useEffect(() => {
-    const token = localStorage.token;
+   
     if (token) {
-      setLoading(true);
-      fetch("/api/validatoken", { //TODO: check it.
+      SetLoading(true);
+      fetch(`${config.hostname}/api/validatoken`, {
         headers: {
+          method: "GET",
           Authorization: `Bearer ${token}`,
         },
-      }) //TODO: check it
+      }) 
         .then((res) => {
           if (res.status == 200) {
-            return res.json();
-          } else {
-            setLoading(false);
+            // return res.json();
+            navigate("/home");
+           
           }
         })
-        .then((_) => {
-          navigate("/home"); //TODO: check it
-        });
     }
   }, []);
 
   if (loading) {
     return (
-      <>
-        <div>Cargando...</div>
-      </>
-    );
+      <p>Cargando</p>
+    )
   }
-
 
   return (
     <>
@@ -53,7 +54,7 @@ export const Main = () => {
                 <h1 className="h1cabecera">
                   Las mejores pizzas para hacer en casa
                 </h1>
-                <button className="boton-registrate">Registrate</button>
+                {/* <button className="boton-registrate">Registrate</button> */}
               </div>
             </div>
 
@@ -65,14 +66,14 @@ export const Main = () => {
       </div>
       {/* fin cabecera */}
 
-      <section>
+      <section className="seccion-descripcion">
         <h2 className="h2home">Encuentra tu pizza en un par de clics</h2>
         <div className="show-info">
           <div className="row">
             <div className="col col-show-info">
               <div className="">
                 <img
-                  src="https://pbs.twimg.com/profile_images/732346720479248389/x106Whv9_400x400.jpg"
+                  src= {ingredientesfront}
                   className="card-img-top"
                   alt="..."
                 />
@@ -87,7 +88,7 @@ export const Main = () => {
             <div className="col">
               <div className="">
                 <img
-                  src="https://pbs.twimg.com/profile_images/732346720479248389/x106Whv9_400x400.jpg"
+                  src={dibujopizza}
                   className="card-img-top"
                   alt="..."
                 />
@@ -102,12 +103,12 @@ export const Main = () => {
             <div className="col">
               <div className="">
                 <img
-                  src="https://pbs.twimg.com/profile_images/732346720479248389/x106Whv9_400x400.jpg"
+                  src= {estrellas}
                   className="card-img-top"
                   alt="..."
                 />
                 <div className="texto-info">
-                  <p className="">Valora la receta y comparte tu opinión</p>
+                  <p className="">Valora la pizza</p>
                 </div>
               </div>
               {/* fin card */}

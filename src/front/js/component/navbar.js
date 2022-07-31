@@ -10,6 +10,7 @@ import myUser from "../../img/my-user.png";
 export const Navbar = () => {
   const exit = () => {
     localStorage.removeItem("token");
+    localStorage.removeItem("user_id");
   };
 
   return (

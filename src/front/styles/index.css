@@ -66,6 +66,7 @@ body {
   color: #504031;
   margin: 20px;
   font-size: 20px;
+  font-weight: 500;
 }
 
 section {
@@ -208,6 +209,17 @@ section {
 
 }
 
+
+.botoncerrar {
+  color: white;
+  background-color: #BB0116;
+  font-weight: bold;
+  border-radius: 5px;
+}
+.modal-footer{
+  background-color: #F5F0C6;
+  border:none;
+}
 .cabecera-izq{
     text-align: center;
 }
@@ -232,7 +244,7 @@ section {
 .texto-info {
     color: #504031;
     margin: 20px;
-    font-size: 20px;
+    font-size: 25px;
 
     
 }
@@ -251,4 +263,8 @@ section {
 
 .login-section{
     background-color: white;
+}
+
+.seccion-descripcion {
+  background-color: white;
 }

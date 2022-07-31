@@ -18,6 +18,8 @@ import { Prueba } from "./pages/prueba";
 import { NewPizza } from "./pages/newpizza"; 
 
 import { Account } from "./pages/my-account";
+import { Userpage } from "./pages/userpage";
+import { TestFran } from "./pages/testfran";
 
 
 //create your first component
@@ -40,10 +42,12 @@ const Layout = () => {
                         <Route element={<Filterpiz />} path="/filter"/>
                         <Route element={<EditPizza />} path="/editpizza" />
                         <Route element={<NewPizza />} path="/newpizza" />
-                        <Route element={<Account />} path="/my-account/" />
+                        <Route element={<Account />} path="/my-account" />
                         <Route element={<Demo />} path="/demo" />
                         <Route element={<Home />} path="/home" />
                         <Route element={<Prueba />} path="/prueba" />
+                        <Route element={<Userpage />} path="/user/:id" />
+                        <Route element={<TestFran />} path="/test" />
                         {/* <Route element={<Register />} path="/register" />
                         <Route element={<Login />} path="/login" /> 
                         <Route element={<Info-pizza />} path="/pizzas/:theid"/>

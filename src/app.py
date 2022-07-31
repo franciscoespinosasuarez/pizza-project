@@ -33,6 +33,8 @@ mail = Mail(app)
 
 # Setup the Flask-JWT-Extended extension
 app.config["JWT_SECRET_KEY"] = os.environ.get('JWT_SECRET')
+app.config["JWT_ACCESS_TOKEN_EXPIRES"] = 3600
+app.config["JWT_REFRESH_TOKEN_EXPIRES"] = 3600
 jwt = JWTManager(app)
 
 # database condiguration

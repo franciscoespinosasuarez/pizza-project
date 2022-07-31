@@ -46,11 +46,12 @@ const getState = ({ getStore, getActions, setStore }) => {
           console.log({ data });
 
           if (resp.status == 200) {
-            localStorage.setItem("token", data);
-            setStore({ token: data });
-           
-            // localStorage.setItem("user_id", data.user_id)
-            // setStore({user_id: data.user_id})
+            localStorage.setItem("token", data.access_token);
+            setStore({ token: data.access_token });
+            //guarda id usuario en localStore (30/07)
+            localStorage.setItem("user_id",data.user_id)
+            setStore({user_id: data.user_id})
+            
           }
 
           return data;

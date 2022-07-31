@@ -23,8 +23,8 @@ cloudinary.config(
   api_secret = "92ugR3DQBT5EDr32Ncen0Z5WyCc" 
 )
 
-
-@api.route('/validatoken', methods=['POST'])
+# He cambiado el metodo de post a get
+@api.route('/validatoken', methods=['GET'])
 @jwt_required()
 def validatoken():
     return jsonify("ok"), 200
@@ -134,6 +134,14 @@ def single_pizza(pizza_id):
         db.session.commit()
 
         return jsonify(pizza.serialize())
+        
+
+@api.route('/pizza/user/<int:id>', methods = ['GET'])
+def pizzabyuser(id):
+
+    pizza = Pizza.query.filter_by(user_id=id)
+    pizza_by_user = list(map(lambda pizza: pizza.serialize(), pizza))
+    return jsonify(pizza_by_user)
 
 # Conseguir pizza por el usuario que la creó
 @api.route('/pizza/user/<int:id>', methods = ['GET'])
@@ -179,7 +187,7 @@ def get_post_user():
         db.session.commit()
         return jsonify(user.serialize()), 201
 
-@api.route('/user/<int:user_id>', methods=['GET', 'PUT', 'DELETE'])
+@api.route('/user/<int:user_id>', methods=['GET', 'DELETE'])
 def single_user(user_id):
     if request.method == 'GET':
         user = User.query.get(user_id)
@@ -187,7 +195,36 @@ def single_user(user_id):
             raise APIException("No existe este user", 404)
         
         return jsonify(user.serialize())
+# He comentado esto para poner la actulización de usuario como función independiente 30/07
+    # if request.method == 'PUT':
+    #     user = User.query.get(user_id)
+    #     if user is None:
+    #         raise APIException("No existe este user", 404)
+    #     body = request.get_json()
 
+    #     if not("id" in body):
+    #         raise APIException("id del user no encontrada", 404)
+
+    #     user.id = body["id"]
+    #     user.name = body["name"]
+    #     db.session.commit()
+
+    #     return jsonify(user.serialize())
+
+    if request.method == 'DELETE':
+        user = User.query.get(user_id)
+        if user is None:
+            raise APIException("No existe el user que intentas eliminar", 404)
+        db.session.delete(user)
+        db.session.commit()
+
+        return jsonify(user.serialize())
+
+# endpoint para actualizar usuario
+
+@api.route('/user/<int:user_id>', methods=['PUT'])
+# @jwt_required()
+def update_user(user_id):
     if request.method == 'PUT':
         user = User.query.get(user_id)
         if user is None:
@@ -201,16 +238,7 @@ def single_user(user_id):
         user.name = body["name"]
         db.session.commit()
 
-        return jsonify(user.serialize())
-
-    if request.method == 'DELETE':
-        user = User.query.get(user_id)
-        if user is None:
-            raise APIException("No existe el user que intentas eliminar", 404)
-        db.session.delete(user)
-        db.session.commit()
-
-        return jsonify(user.serialize())
+        return jsonify(user.serialize()), 200
 
 #LOGIN Y CREACIÓN DE TOKEN
 @api.route("/login", methods=["POST"])
