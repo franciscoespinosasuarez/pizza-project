@@ -8,7 +8,7 @@ import { Navbar } from "../component/navbar";
 import config from "../config";
 import ingredientesfront from "../../img/ingredientesfront.png"
 import dibujopizza from "../../img/dibujopizza.png"
-import estrellas from "../../img/estrellas.jpg"
+import estrellas from "../../img/estrellas.png"
 
 
 export const Main = () => {

@@ -30,26 +30,6 @@ def validatoken():
     return jsonify("ok"), 200
 
 
-# Create a route to authenticate your users and return JWTs. The
-# create_access_token() function is used to actually generate the JWT.
-
-# @api.route("/token", methods=["POST"])
-# def create_token():
-#     email = request.json.get("email", None)
-#     password = request.json.get("password", None)
-    
-
-#     user = User.query.filter_by(email=email, password=password).first()
-#     if not user:
-#          return jsonify({"message": "El usuario no fue encontrado"}), 401
-
-#     data_response = {
-#         "email": email,
-#         "password":password
-#     }
-
-#     return jsonify(data_response), 200 
-
 
 
 
@@ -135,13 +115,6 @@ def single_pizza(pizza_id):
 
         return jsonify(pizza.serialize())
         
-
-@api.route('/pizza/user/<int:id>', methods = ['GET'])
-def pizzabyuser(id):
-
-    pizza = Pizza.query.filter_by(user_id=id)
-    pizza_by_user = list(map(lambda pizza: pizza.serialize(), pizza))
-    return jsonify(pizza_by_user)
 
 # Conseguir pizza por el usuario que la creó
 @api.route('/pizza/user/<int:id>', methods = ['GET'])
@@ -247,8 +220,7 @@ def login():
     password = request.json.get("password", None)
 
     user = User.query.filter_by(email=email).first()
-    print(">>>>>>>>>>", email)
-    print(">>>>>>>>>>", user)
+
 
     if not user:
         return jsonify({"message": "El usuario no fue encontrado"}), 401
@@ -258,14 +230,13 @@ def login():
     if hashed_pw is False: 
         return jsonify({"message": "Contraseña incorrecta"}), 401
 
-    data = {
-        "email": email
-    }
-    # CREACIÓN DE TOKEN
-    access_token = create_access_token(identity=data)
 
-    return jsonify(access_token)
-    # return jsonify(access_token=access_token, user_id=user.id), 200         
+    # CREACIÓN DE TOKEN
+    access_token = create_access_token(identity=email)
+
+
+    return jsonify(access_token=access_token, user_id=user.id), 200         
+ 
 
 #INGREDIENT -------------------->
 @api.route('/ingredient', methods=['GET', 'POST'])
