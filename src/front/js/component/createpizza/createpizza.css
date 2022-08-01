@@ -23,6 +23,10 @@
     font-weight: bolder;
 }
 
+.hidden{
+    display: none;
+}
+
 .pizza-textarea{
     width: auto;
     background-color: #b1550a0e;

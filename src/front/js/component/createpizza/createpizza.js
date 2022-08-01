@@ -105,9 +105,10 @@ export const CreatePizzaProvisional = () => {
       <form
         className="form-create-pizza"
         // onSubmit={handleSubmit}
+        target="frame"
         action="https://3001-franciscoes-pizzaprojec-jytudtgtzrc.ws-eu54.gitpod.io/api/pizza"
         method="post"
-        enctype="multipart/form-data"
+        encType="multipart/form-data"
       >
         <div className="py-3"></div>
         <div className="container container-create-pizza">
@@ -165,7 +166,7 @@ export const CreatePizzaProvisional = () => {
                     type="button"
                     onClick={() => actions.eliminate_ingredient(val)}
                   >
-                    {val.first_name}
+                    {val.name}
                   </button>
                 </div>
               );
@@ -194,6 +195,7 @@ export const CreatePizzaProvisional = () => {
           <input type="submit" value="Submit" className="create-pizza-btn" />
         </div>
       </form>
+      <iframe name="frame" id="frame" hidden></iframe>
     </>
   );
 };

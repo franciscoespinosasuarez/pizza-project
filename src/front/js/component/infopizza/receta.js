@@ -2,7 +2,7 @@ import React from "react";
 import "./infopizza.css";
 import RECIPE from "./examples/recipe"
 
-export const RecetaPizza = () => {
+export const RecetaPizza = (props) => {
 
 
 

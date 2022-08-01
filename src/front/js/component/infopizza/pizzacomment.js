@@ -12,6 +12,8 @@ export const PizzaComment = (props) =>{
         return star_array
     }
 
+    
+
     return(
         <>
             <div>

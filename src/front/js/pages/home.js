@@ -11,10 +11,10 @@ import "../component/createpizza/createpizza.css"
 export const Home = () =>{
     const {store, actions } = useContext(Context);
 
-    // useEffect(() =>{
-    //     actions.getPizzas();
-    //     actions.filter_function();
-    // })
+    useEffect(() =>{
+        actions.getPizzas();
+        // actions.filter_function();
+    }, [])
 
 
 
@@ -70,6 +70,8 @@ export const Home = () =>{
             </button>
           </div>
 
+          {/* muestra los ingredientes seleccionados */}
+         
           <div className="container row selected py-2">
             {store.itemArray.map((val, key) => {
               console.log(val);
@@ -80,24 +82,24 @@ export const Home = () =>{
                     type="button"
                     onClick={() => actions.eliminate_ingredient(val)}
                   >
-                    {val.first_name}
+                    {val.name}
                   </button>
                 </div>
               );
             })}
           </div>
         {/* mostrar información */}
-        {/* <div> quitar comentario cuando se rellene el flux
+        <div className="row d-flux">
                   {store.pizzas.length > 0 ? (
-                    store.pizzas.map((elem, i) => {
-                      let cat_name2 = "";
-
+                    store.pizzas.map((element, i) => {
                       return (
                         <PizzaCard
-                          name={elem.name}
+                          name={element.name}
                           key={i}
-                          pizza_image={elem.pizza_image}
-                          user={elem.user}
+                          img={element.pizza_image}
+                          user={element.user_id}
+                          ingredient={element.recipe}
+                          val={element.id}
                         />
                       );
                     })
@@ -109,13 +111,7 @@ export const Home = () =>{
                       <span className="sr-only">Loading...</span>
                     </div>
                   )}
-                </div> */}
-        <div className="row pt-5">        
-            <PizzaCard />
-            <PizzaCard />
-            <PizzaCard />
-            <PizzaCard />
-        </div>
+                </div>
 
         </div>
         </>

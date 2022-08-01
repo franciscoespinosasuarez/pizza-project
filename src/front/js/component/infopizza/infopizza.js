@@ -1,10 +1,9 @@
 import React from "react";
 import "./infopizza.css";
 
-export const TituloPizza = (props) => {
+export const InfoPizza = (props) => {
 
-    let imgSrc = "https://sopranospizzaca.com/wp-content/uploads/2018/11/placeholder.png"
-    let titulo = "tittle-fuente"
+    
 
     return( 
         <div className="d-flex justify-content-center row">
