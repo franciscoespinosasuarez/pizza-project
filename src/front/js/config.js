@@ -1,6 +1,6 @@
 const config = {
   hostname:
-    "https://3001-franciscoes-pizzaprojec-jytudtgtzrc.ws-eu54.gitpod.io",
+    procces.end.BACKEND_URL,
 };
 
 export default config;
