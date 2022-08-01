@@ -5,7 +5,6 @@ import { FilterIngredient } from "../component/filteringredient/filteringredient
 import Navbar from "../component/navbar";
 import config from "../config";
 import "../component/createpizza/createpizza.css";
-import "../../styles/home.css";
 
 export const Home = () => {
   const { store, actions } = useContext(Context);
