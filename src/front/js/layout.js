@@ -20,6 +20,7 @@ import { NewPizza } from "./pages/newpizza";
 import { Account } from "./pages/my-account";
 import { Userpage } from "./pages/userpage";
 import { TestFran } from "./pages/testfran";
+import { Mypizzas } from "./pages/my-pizzas";
 
 
 //create your first component
@@ -48,6 +49,7 @@ const Layout = () => {
                         <Route element={<Prueba />} path="/prueba" />
                         <Route element={<Userpage />} path="/user/:id" />
                         <Route element={<TestFran />} path="/test" />
+                        <Route element={<Mypizzas />} path="/my-pizzas" />
                         {/* <Route element={<Register />} path="/register" />
                         <Route element={<Login />} path="/login" /> 
                         <Route element={<Info-pizza />} path="/pizzas/:theid"/>

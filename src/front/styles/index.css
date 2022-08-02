@@ -178,91 +178,80 @@ section {
   -webkit-box-shadow: 5px 5px 15px 0px rgba(86, 71, 58, 0.35);
   box-shadow: 5px 5px 15px 0px rgba(86, 71, 58, 0.35);
 }
-.infolabel{
-    font-weight: bold;
-    color: #b1550a;
+.infolabel {
+  font-weight: bold;
+  color: #b1550a;
 }
 /*boton editar info*/
 
 .editarinfo-button {
-    width: 100%;
-    margin-top: 15px;
-    background-color: #ad682f;
-    border: none;
-    color: white;
-    padding: 10px 25px;
-    font-size: 15px;
-    font-weight: 600;
-    text-transform: uppercase;
-    border-radius: 10px;
-  }
-  
+  width: 100%;
+  margin-top: 15px;
+  background-color: #ad682f;
+  border: none;
+  color: white;
+  padding: 10px 25px;
+  font-size: 15px;
+  font-weight: 600;
+  text-transform: uppercase;
+  border-radius: 10px;
+}
+
 .editarinfo-button:hover {
-    background-color: #b1550a;
-}
-  
-    
-
-.boton-registrate:hover{
-    background-color:#b1550a;
-
-
+  background-color: #b1550a;
 }
 
+.boton-registrate:hover {
+  background-color: #b1550a;
+}
 
 .botoncerrar {
   color: white;
-  background-color: #BB0116;
+  background-color: #bb0116;
   font-weight: bold;
   border-radius: 5px;
 }
-.modal-footer{
-  background-color: #F5F0C6;
-  border:none;
+.modal-footer {
+  background-color: #f5f0c6;
+  border: none;
 }
-.cabecera-izq{
-    text-align: center;
+.cabecera-izq {
+  text-align: center;
 }
-
-
 
 /*SHOW INFO*/
-.show-info{
-    display: flex;
-    justify-content:space-evenly;
-    text-align: center;
-    font-size: 20px;
-    font-weight: 400;
+.show-info {
+  display: flex;
+  justify-content: space-evenly;
+  text-align: center;
+  font-size: 20px;
+  font-weight: 400;
 }
 
-.col-show-info{
-
-    width: 500px;
-    
+.col-show-info {
+  width: 500px;
 }
 
 .texto-info {
-    color: #504031;
-    margin: 20px;
-    font-size: 25px;
-
-    
+  color: #504031;
+  margin: 20px;
+  font-size: 25px;
 }
 
 section {
-    padding: 100px 0;
+  padding: 100px 0;
 }
 
-.h2home{
-    text-align: center;
-    margin-bottom: 100px;
-    font-size: 40px;
-    font-weight: 600;
-    color: #b1550a;
+.h2home {
+  text-align: center;
+  margin-bottom: 100px;
+  font-size: 40px;
+  font-weight: 600;
+  color: #b1550a;
 }
 
-.login-section{
-    background-color: white;
+.login-section {
+  background-color: white;
 }
 
 .seccion-descripcion {
@@ -270,32 +259,78 @@ section {
 }
 
 /*PIZZAS DE USUARIO*/
-.grill-pizza-user{
+.grill-pizza-user {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
 }
 
-
-.pizzacard-user{
+.pizzacard-user {
   display: flex;
-  flex-direction:column;
+  flex-direction: column;
   align-items: center;
-  gap: 10px;
+  margin: 50px;
 }
-.pizzacard-user-img-div{
- width: 300px;
- height: 300px;
- overflow: hidden;
- background-color: white;
-
+.pizzacard-user-img-div {
+  width: 300px;
+  height: 300px;
+  overflow: hidden;
+  -webkit-box-shadow: 0px 0px 5px -1px rgba(184,184,184,1);
+  -moz-box-shadow: 0px 0px 5px -1px rgba(184,184,184,1);
+  box-shadow: 0px 0px 5px -1px rgba(184,184,184,1);
 }
-.pizzacard-user-img{
+.pizzacard-user-img {
   max-width: 100%;
   position: center center;
+  
 }
 
-.pizzacard-texto{
+.pizzacard-texto {
   font-size: 25px;
   font-weight: 600;
   text-transform: capitalize;
+  margin: 20px 0;
+}
+
+/*mis pizzas*/
+
+.addpizza-button {
+  margin-top: 15px;
+  background-color: #ad682f;
+  border: none;
+  color: white;
+  padding: 10px 25px;
+  font-size: 15px;
+  font-weight: 600;
+  text-transform: uppercase;
+  border-radius: 10px;
+}
+
+.addpizza-button:hover {
+  background-color: #b1550a;
+}
+
+.div-img-banner{
+background: url("https://res.cloudinary.com/dff57mtn0/image/upload/v1659466585/pizza-project/banner_pexggt.jpg");
+width: 100%;
+height: 300px;
+background-repeat: no-repeat;
+background-position: center;
+background-size: cover;
+display: flex;
+align-items: center;
+flex-direction: column;
+margin: 50px 0;
+
+}
+
+.h1-my-pizzas{
+  color: white;
+  font-size: 50px;
+  font-weight: bold;
+  text-align: center;
+  margin: auto 0;
+  text-shadow: 2px 2px 3px rgba(150, 150, 150, 1);
+
+
+
 }

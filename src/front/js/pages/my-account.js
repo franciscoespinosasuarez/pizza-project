@@ -90,7 +90,7 @@ export const Account = () => {
   return (
     <>
       <Navbar />
-      <div>
+      <div className="">
         <h2 className=" h2user">Mi cuenta</h2>
       </div>
 

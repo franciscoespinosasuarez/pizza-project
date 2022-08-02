@@ -6,7 +6,7 @@ import config from "../config";
 
 export const Userpage = () => {
   useEffect(() => {
-    const token = localStorage.token;
+    const token = localStorage.getItem("token");
     if (token) {
       fetch("/api/validatoken", {
         headers: {
