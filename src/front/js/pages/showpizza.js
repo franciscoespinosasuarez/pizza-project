@@ -1,4 +1,5 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
+import { Context } from "../store/appContext.js";
 import { IngredientesPizza } from "../component/infopizza/ingredientes.js";
 import Navbar from "../component/navbar.js";
 import { PizzaComment } from "../component/infopizza/pizzacomment"; 
@@ -8,6 +9,22 @@ import { RecetaPizza } from "../component/infopizza/receta.js";
 
 
 export const ShowPizza = () =>{
+  const {store, actions} = useContext(Context);
+
+  const thepizza = store.pizza_id;
+
+  useEffect(() => {
+    actions.getPizza(id);
+  }, [])
+
+  useEffect(() => {
+    fetch(`${config.hostname}/api/pizza/${store.pizza_id}`)
+    .then((res) => {
+      return res.json();
+    })
+    .catch((error) => console.log({ error }));
+  })
+  
     return(
         <>
         <Navbar />

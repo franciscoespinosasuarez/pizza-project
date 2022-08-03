@@ -4,9 +4,14 @@ const getState = ({ getStore, getActions, setStore }) => {
   return {
     store: {
       token: null,
+      user_name:"",
       itemArray: [],
       pizzas: [],
       users: [],
+      ingredient: [],
+      recipe: [],
+      user_id: 0,
+      pizza_id: 0,
     },
     actions: {
       // Use getActions to call a function within a fuction
@@ -107,6 +112,44 @@ const getState = ({ getStore, getActions, setStore }) => {
 
         const data = await res.json();
         await setStore({ pizzas: data });
+      },
+
+       //Cargar las recetas:
+      
+       getRecipe: async () => {
+        const res = await fetch(`${config.hostname}/api/recipe`, {
+          method: 'GET',
+        });
+
+        const data = await res.json();
+        await setStore({ recipe: data });
+      },
+
+      //Cargar los ingredientes:
+      getIngredient: async () => {
+        const res = await fetch(`${config.hostname}/api/ingredient`,{
+          method: 'GET',
+        });
+
+        const data = await res.json();
+        console.log(data);
+        await setStore({ ingredient: data })
+      },
+
+      //Cargar las recetas:
+      getRecipes: async () => {
+        const res = await fetch(`${config.hostname}/api/recipe`,{
+          method: 'GET',
+        });
+
+        const data = await res.json();
+        console.log(data);
+        await setStore({ recipe: data })
+      },
+
+      //Carga la id de la pizza:
+      getPizzaId: (id) => {
+        setStore({pizza_id: id})
       },
 
       //demo
