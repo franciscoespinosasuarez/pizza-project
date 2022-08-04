@@ -19,23 +19,38 @@ export const Main = () => {
   const navigate = useNavigate();
   const [loading, SetLoading] = useState(false)
 
+  const validatetoken = () => {fetch(`${config.hostname}/api/validatoken`, {
+    headers: {
+      method: "GET",
+      Authorization: `Bearer ${token}`,
+    },
+  }) 
+    .then((res) => {
+      if (res.status == 200) {
+        // return res.json();
+        navigate("/home");
+       
+      }
+    })}
+
   useEffect(() => {
    
     if (token) {
       SetLoading(true);
-      fetch(`${config.hostname}/api/validatoken`, {
-        headers: {
-          method: "GET",
-          Authorization: `Bearer ${token}`,
-        },
-      }) 
-        .then((res) => {
-          if (res.status == 200) {
-            // return res.json();
-            navigate("/home");
+      setTimeout(validatetoken, 1000)
+      // const validatetoken = () => {fetch(`${config.hostname}/api/validatoken`, {
+      //   headers: {
+      //     method: "GET",
+      //     Authorization: `Bearer ${token}`,
+      //   },
+      // }) 
+      //   .then((res) => {
+      //     if (res.status == 200) {
+      //       // return res.json();
+      //       navigate("/home");
            
-          }
-        })
+      //     }
+      //   })}
     }
   }, []);
 
