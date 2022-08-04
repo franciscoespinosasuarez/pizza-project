@@ -5,17 +5,20 @@ import { FilterIngredient } from "../component/filteringredient/filteringredient
 import Navbar from "../component/navbar";
 import config from "../config";
 import "../component/createpizza/createpizza.css"
+import { Footer } from "../component/footer";
 
 
 
 export const Home = () =>{
     const {store, actions } = useContext(Context);
 
-    // useEffect(() =>{
-    //     actions.getPizzas();
-    //     actions.filter_function();
-    // })
+    
 
+    useEffect(() =>{
+        actions.getPizzas();
+
+        // actions.filter_function();
+    }, [])
 
 
 
@@ -70,34 +73,38 @@ export const Home = () =>{
             </button>
           </div>
 
-          <div className="container row selected py-2">
-            {store.itemArray.map((val, key) => {
+          {/* muestra los ingredientes seleccionados */}
+         
+
+          <div hidden={store.itemArray.length === 0} className="container row selected py-2">
+            {store.itemArray.map((val, i) => {
               console.log(val);
               return (
-                <div className="container col-3 py-2 d-flex justify-content-center">
+                <div className="container col-3 py-2 d-flex justify-content-center" key={i}>
                   <button
                     className="ingredient-btn"
                     type="button"
                     onClick={() => actions.eliminate_ingredient(val)}
                   >
-                    {val.first_name}
+                    {val.name}
                   </button>
                 </div>
               );
             })}
           </div>
         {/* mostrar información */}
-        {/* <div> quitar comentario cuando se rellene el flux
+        <div className="row d-flux">
                   {store.pizzas.length > 0 ? (
-                    store.pizzas.map((elem, i) => {
-                      let cat_name2 = "";
-
+                    store.pizzas.map((element, i) => {
                       return (
                         <PizzaCard
-                          name={elem.name}
+                          name={element.name}
                           key={i}
-                          pizza_image={elem.pizza_image}
-                          user={elem.user}
+                          img={element.pizza_image}
+                          user={element.user_name}
+                          userid={element.user_id}
+                          ingredient={element.recipe}
+                          val={element.id}
                         />
                       );
                     })
@@ -109,15 +116,10 @@ export const Home = () =>{
                       <span className="sr-only">Loading...</span>
                     </div>
                   )}
-                </div> */}
-        <div className="row pt-5">        
-            <PizzaCard />
-            <PizzaCard />
-            <PizzaCard />
-            <PizzaCard />
-        </div>
+                </div>
 
         </div>
+        <Footer />
         </>
 
     )

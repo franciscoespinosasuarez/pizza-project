@@ -45,20 +45,12 @@ def list_pizza():
 # @jwt_required()
 def add_pizza():
 
-
     # dataUser = get_jwt_identity()
-    # id = User.query.filter_by(email = dataUser["email"]).first()
-    id = int(request.form["user_id"])
-    # body = request.get_json()
-    nombre = request.form["name"]
-    receta = request.form["recipe"]
+    body = request.get_json()
     
 # cloudinary
 
-    image_to_load = request.files["file"]
-    print("nombre :", nombre )
-    print("image :", image_to_load )
-    print("receta :", receta )
+    image_to_load = request.files["perfil_image"]
 
     if not image_to_load:
         return jsonify("imagen no existe")
@@ -67,14 +59,14 @@ def add_pizza():
     print(result)
     url = result["url"]
     # user_image = User(perfil_image=url)
+
         # cloudinary
 
     pizza = Pizza(
-        user_id=id,
-        pizza_image=url,
-        name = nombre,
-        recipe = receta)
-    print(">>>>>>>>>>>>5")
+        user_id=dataUser["id"], 
+        category_id=int(body["category"]),
+        pizza_image=url,name=body["name"],
+        recipe=body['recipe'])
 
     db.session.add(pizza)
     db.session.commit()
@@ -114,18 +106,15 @@ def single_pizza(pizza_id):
         db.session.commit()
 
         return jsonify(pizza.serialize())
-        
 
-# Conseguir pizza por el usuario que la creó
 @api.route('/pizza/user/<int:id>', methods = ['GET'])
 def pizzabyuser(id):
 
     pizza = Pizza.query.filter_by(user_id=id)
     pizza_by_user = list(map(lambda pizza: pizza.serialize(), pizza))
     return jsonify(pizza_by_user)
+
     
-
-
 #USER -------------------->
 @api.route('/user', methods=['GET', 'POST'])
 def get_post_user():
@@ -236,7 +225,6 @@ def login():
 
 
     return jsonify(access_token=access_token, user_id=user.id), 200         
- 
 
 #INGREDIENT -------------------->
 @api.route('/ingredient', methods=['GET', 'POST'])

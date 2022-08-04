@@ -6,6 +6,7 @@ import { PizzaComment } from "../component/infopizza/pizzacomment";
 import COMENTARIO from "../component/infopizza/examples/commentarios";
 import { TituloPizza } from "../component/infopizza/titulo";
 import { RecetaPizza } from "../component/infopizza/receta.js";
+import { Footer } from "../component/footer";
 
 
 export const ShowPizza = () =>{
@@ -24,7 +25,7 @@ export const ShowPizza = () =>{
     })
     .catch((error) => console.log({ error }));
   })
-  
+
     return(
         <>
         <Navbar />
@@ -67,6 +68,7 @@ export const ShowPizza = () =>{
                 })}
             </ul>
           </div>
+          <Footer />
         </>
     )
 }

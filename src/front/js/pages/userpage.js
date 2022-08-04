@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import Navbar from "../component/navbar";
 import config from "../config";
+import { Footer } from "../component/footer";
 
 export const Userpage = () => {
   useEffect(() => {
@@ -91,6 +92,8 @@ export const Userpage = () => {
 
         
       </div>
+
+      <Footer />
     </>
   );
 };

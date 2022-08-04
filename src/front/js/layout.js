@@ -58,7 +58,7 @@ const Layout = () => {
                         <Route element={<User-menu />} path="/user/:theid" />
                         <Route element={<Change-password />} path="/change-password" /> */}
                     </Routes>
-                    <Footer />
+                    {/* <Footer /> */}
                 </ScrollToTop>
             </BrowserRouter>
         </div>

@@ -11,6 +11,14 @@ function Register() {
   const { store, actions } = useContext(Context);
   const navigate = useNavigate();
 
+  //Función que hace login después del register
+
+  const loginAfterRegister = () => {
+    actions.login(data["email"], data["password"]).then(() => {
+      navigate("/home");
+    });
+  }
+
   const handleChange = (e) => {
     setData({ ...data, [e.target.name]: e.target.value });
   };
@@ -88,7 +96,8 @@ function Register() {
                   Cuenta creada correctamente.
                 </p>
               );
-
+              
+              setInterval(loginAfterRegister, 1500)
               // actions.login(data["email"], data["password"]).then(() => {
               //   navigate("/home");
               // });

@@ -7,3 +7,14 @@
 .container-card{
     background-color: rgba(255, 255, 255, 0.315);
 }
+
+.card-usuario{
+    text-decoration: none;
+    color: black;
+    text-transform: capitalize;
+}
+
+.card-nombre{
+    text-transform: capitalize;
+    font-weight: bold
+}

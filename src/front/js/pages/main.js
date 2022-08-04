@@ -9,6 +9,7 @@ import config from "../config";
 import ingredientesfront from "../../img/ingredientesfront.png"
 import dibujopizza from "../../img/dibujopizza.png"
 import estrellas from "../../img/estrellas.jpg"
+import { Footer } from "../component/footer";
 
 
 export const Main = () => {
@@ -40,7 +41,12 @@ export const Main = () => {
 
   if (loading) {
     return (
-      <p>Cargando</p>
+      <>
+      <div className="loading-container">
+        <div className="spinner"></div>
+        <p className="loading-text">Cargando</p>
+      </div>
+      </>
     )
   }
 
@@ -51,10 +57,10 @@ export const Main = () => {
           <div className="cabecera">
             <div className="row cabecera-izq">
               <div className="col">
-                <h1 className="h1cabecera">
+                <h1 className="h1cabecera mb-4">
                   Las mejores pizzas para hacer en casa
                 </h1>
-                {/* <button className="boton-registrate">Registrate</button> */}
+                <a className="boton-registrate" href="#prueba1">Registrate</a>
               </div>
             </div>
 
@@ -120,9 +126,11 @@ export const Main = () => {
       </section>
 
       <section className="login-section">
-        <h2 className="h2home">Regístrate y encuentra de tu pizza ideal</h2>
+        <h2 className="h2home" id="prueba1">Regístrate y encuentra de tu pizza ideal</h2>
         <Register/>
       </section>
+      
+      <Footer />
     </>
   );
 };

@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { Context } from "../../store/appContext"
 import "./filteringredient.css";
 import EXAMPLE from "./example.js";
@@ -6,6 +6,10 @@ import EXAMPLE from "./example.js";
 export const FilterIngredient = () => {
   const { store, actions } = useContext(Context)
   const [searchTerm, setSearchTerm] = useState("");
+
+  useEffect(() => {
+    actions.getIngredient();
+  }, [])
 
 
   return (
@@ -27,7 +31,7 @@ export const FilterIngredient = () => {
           console.log(val)
             return(
                 <div className="container col-3 py-2 d-flex justify-content-center">
-                    <button className="ingredient-btn" onClick={() => actions.eliminate_ingredient(val)}>{val.first_name}</button>
+                    <button className="ingredient-btn" onClick={() => actions.eliminate_ingredient(val)}>{val.name}</button>
                 </div>
             )
         }
@@ -36,7 +40,7 @@ export const FilterIngredient = () => {
 
       {/*----------------------- lista de ingredientes ---------------------*/}
       <div className="container row list py-3">
-        {EXAMPLE.filter((val) => {
+        {store.ingredient.filter((val) => {
           if (searchTerm == "") {
             return val;
           } else if (
@@ -50,7 +54,7 @@ export const FilterIngredient = () => {
             }
           return (
             <div className="col-3" key={key}>
-              <button className="ingredient-btn my-1" onClick={() => actions.filter_function(val) }>{val.first_name} </button>
+              <button className="ingredient-btn my-1" onClick={() => actions.filter_function(val) }>{val.name} </button>
             </div>
           );
         })}

@@ -5,7 +5,7 @@ const getState = ({ getStore, getActions, setStore }) => {
     store: {
       token: null,
       user_name:"",
-      itemArray: [],
+      itemArray: [], //este son los ingredientes
       pizzas: [],
       users: [],
       ingredient: [],
@@ -63,7 +63,7 @@ const getState = ({ getStore, getActions, setStore }) => {
         }
       },
 
-      // FILTER array
+      // FILTER array lugar donde se guardan los ingredientes
       filter_function: (ingredient) => {
         const store = getStore();
         const aux = [...store.itemArray, ingredient];

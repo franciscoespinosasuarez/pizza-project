@@ -5,6 +5,7 @@ import Navbar from "../component/navbar";
 import config from "../config";
 import { Link } from "react-router-dom";
 import banner from "../../img/banner.jpg";
+import { Footer } from "../component/footer";
 
 export const Mypizzas = () => {
   const navigate = useNavigate();
@@ -77,9 +78,9 @@ export const Mypizzas = () => {
               <button className="addpizza-button">Añadir pizza</button>
             </Link>
           </div>
-          {pizzas.map((pizza) => {
+          {pizzas.map((pizza, i) => {
             return (
-              <div className="pizzacard-user">
+              <div className="pizzacard-user" key={i}>
                 <div className="pizzacard-user-img-div">
                   <img
                     className="pizzacard-user-img"
@@ -94,6 +95,7 @@ export const Mypizzas = () => {
         </div>
       </div>
       {/* fin container */}
+      <Footer />
     </>
   );
 };

@@ -46,6 +46,7 @@ class Pizza(db.Model):
             "name": self.name,
             "pizza_image": self.pizza_image,
             "user_name": self.user_relationship.user_name,
+            "user_id": self.user_id,
         }
 
 

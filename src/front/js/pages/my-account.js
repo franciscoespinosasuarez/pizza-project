@@ -5,6 +5,7 @@ import Navbar from "../component/navbar";
 import Login from "../component/loginform/loginform";
 //30/07
 import config from "../config";
+import { Footer } from "../component/footer";
 
 export const Account = () => {
   //verifiacación del token 31/07
@@ -186,6 +187,7 @@ export const Account = () => {
           </div>
         </div>
       </div>
+      <Footer />
     </>
   );
 };
