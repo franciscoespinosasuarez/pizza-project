@@ -158,13 +158,14 @@ export const CreatePizzaProvisional = () => {
           </div>
 
           <div className="container row selected py-2">
-            {store.createPizza.map((val, key) => {
+            {store.itemArray.map((val, key) => {
               console.log(val);
               return (
                 <div className="container col-3 py-2 d-flex justify-content-center">
                   <button
                     className="ingredient-btn"
                     type="button"
+                    key={key}
                     onClick={() => actions.eliminate_ingredient(val)}
                   >
                     {val.name}

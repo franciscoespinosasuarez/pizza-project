@@ -11,6 +11,9 @@ export const FilterIngredient = () => {
     actions.getIngredient();
   }, [])
 
+  // useEffect(() => {
+  //   actions.createRecipe();
+  // }, [])
  
   
   const createRecipe = () => {
@@ -20,9 +23,7 @@ export const FilterIngredient = () => {
     console.log(store.createPizza)
   }
 
-  useEffect(() => {
-    createRecipe();
-  }, [])
+
 
 
   return (
@@ -75,7 +76,7 @@ export const FilterIngredient = () => {
       {/* Submit */}
       <div className="d-flex justify-content-center">
         <div>
-          <button className="button-82-pushable" onClick={createRecipe}>
+          <button className="button-82-pushable" >
             <span className="button-82-shadow"></span>
             <span className="button-82-edge"></span>
             <span className="button-82-front text">

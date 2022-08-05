@@ -52,6 +52,10 @@
     border-radius: 10px;
 }
 
+a{
+    text-decoration: none;
+}
+
 .form-create-pizza{
     background-color: #75757500;
     width: auto;
