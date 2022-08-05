@@ -1,7 +1,8 @@
 import React, { useContext, useState, useEffect } from "react";
 import { Context } from "../../store/appContext";
+import { Link } from "react-router-dom";
 import "./createpizza.css";
-import { FilterIngredient } from "../filteringredient/filteringredient";
+import { FilterIngredient } from "../filteringredient/filteringredientCreate";
 import config from "../../config.js";
 
 export const CreatePizzaProvisional = () => {
@@ -157,7 +158,7 @@ export const CreatePizzaProvisional = () => {
           </div>
 
           <div className="container row selected py-2">
-            {store.itemArray.map((val, key) => {
+            {store.createPizza.map((val, key) => {
               console.log(val);
               return (
                 <div className="container col-3 py-2 d-flex justify-content-center">
@@ -192,7 +193,7 @@ export const CreatePizzaProvisional = () => {
             ></textarea>
           </div>
 
-          <input type="submit" value="Submit" className="create-pizza-btn" />
+            <input type="submit" value="Submit" className="create-pizza-btn" />
         </div>
       </form>
       <iframe name="frame" id="frame" hidden></iframe>

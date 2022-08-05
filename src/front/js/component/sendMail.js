@@ -1,5 +1,4 @@
 import React, { Component, useState } from "react";
-import "./filteringredient.css";
 
 export const SendMail = () => {
 

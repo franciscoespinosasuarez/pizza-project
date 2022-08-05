@@ -39,7 +39,7 @@ const Layout = () => {
                         {/* si no hay login, la main es login y te direcciona a él  y cambiar HOME por main*/}
                         <Route element={<Main />} path="/" />
                         {/* <Route element={<Home />} path="login" /> */}
-                        <Route element={<ShowPizza />} path="/pizzas"/>
+                        <Route element={<ShowPizza />} path="/pizza/:id"/>
                         <Route element={<Filterpiz />} path="/filter"/>
                         <Route element={<EditPizza />} path="/editpizza" />
                         <Route element={<NewPizza />} path="/newpizza" />

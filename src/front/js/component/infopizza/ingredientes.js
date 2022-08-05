@@ -14,7 +14,7 @@ export const IngredientesPizza = () => {
         <div className="container">
 
           {/*----------------- ingredientes --------------*/}
-          <div className="container  list py-4 ingredient-container">
+          <div className="container list py-4 ingredient-container ingredients-list">
             <h2>Ingredientes:</h2>
             <div className="row">
                 {INGREDIENTS.map((val, key) => {

@@ -25,15 +25,19 @@ export const PizzaCard = (props) => {
 
 
   return(
-    <div className="container col-5 m-3" onClick={()=> console.log(props.userid)}>
+    <div className="container col-5 m-3" onClick={()=> console.log(props.idpizza)}>
     <div className="card mb-3 container-card" >
       <div className="row g-0">
         <div className="col-md-4 d-flex align-items-center ">
+        <Link to = {`/pizza/${idpizza}`}>
           <img src={props.img} className="img-fluid rounded-start img-card" alt="..."/>
+        </Link>
         </div>
         <div className="col-md-8">
           <div className="card-body">
-            <h5 className="card-title card-nombre">{props.name}</h5>
+            <Link to = {`/pizza/${idpizza}`}>
+              <h5 className="card-title card-nombre ">{props.name}</h5>
+            </Link>
 
             <Link to = {`/user/${props.userid}`} className="card-usuario">
               <p className="card-text card-usuario">{props.user}</p>

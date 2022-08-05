@@ -104,6 +104,10 @@
     padding-top: 5px;
 }
 
+.imageUpload:hover{
+    background-color: #ad682f41;
+}
+
 #imageUpload:hover {
     background: #f1f1f1;
     border-color: #d6d6d6;

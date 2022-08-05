@@ -11,6 +11,12 @@ export const FilterIngredient = () => {
     actions.getIngredient();
   }, [])
 
+  const createRecipe = () => {
+    for ( let i in store.itemArray){
+      store.createPizza.push(store.itemArray[i])
+    }
+    console.log(store.createPizza)
+  }
 
   return (
     <div className="container filter-container">
@@ -30,7 +36,7 @@ export const FilterIngredient = () => {
         {store.itemArray.map((val,key)=> {
           console.log(val)
             return(
-                <div className="container col-3 py-2 d-flex justify-content-center">
+                <div className="container col-3 py-2 d-flex justify-content-center" key={key}>
                     <button className="ingredient-btn" onClick={() => actions.eliminate_ingredient(val)}>{val.name}</button>
                 </div>
             )
@@ -62,11 +68,11 @@ export const FilterIngredient = () => {
       {/* Submit */}
       <div className="d-flex justify-content-center">
         <div>
-          <button className="button-82-pushable">
+          <button className="button-82-pushable" onClick={createRecipe}>
             <span className="button-82-shadow"></span>
             <span className="button-82-edge"></span>
             <span className="button-82-front text">
-              Filtrar
+              Añadir ingredientes
             </span>
         </button>
     </div>

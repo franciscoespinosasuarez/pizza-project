@@ -14,16 +14,19 @@ export const PizzaComment = (props) =>{
 
     return(
         <>
-            <div>
-                <p className="pizza-rate">{props.rate}</p>
+            <div className="container comment-container">
                 <div className="card mb-3 card-comment" >
                     <div className="row g-0">
-                        <div className="col-md-4">
-                        <img src="https://sopranospizzaca.com/wp-content/uploads/2018/11/placeholder.png" className="img-fluid rounded-start img-comment" />
+                        <div className="col-md-1">
+                            <img src="https://sopranospizzaca.com/wp-content/uploads/2018/11/placeholder.png" className="img-fluid rounded-start img-card img-comment t" />
                         </div>
                         <div className="col-md-8">
                         <div className="card-body">
-                            <h5 className="card-title">{props.user}</h5>
+                            <div className="row">
+                                <h5 className="card-title col">{props.user}</h5>
+                                <p className="pizza-rate col">{props.rate}</p>
+                            </div>
+                            
                             <p className="card-text">{props.comment}</p>
                             <div className="text-date" >
                                 <p className="card-text"><small className="text-muted ">{props.date}</small></p>

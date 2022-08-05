@@ -12,6 +12,8 @@ const getState = ({ getStore, getActions, setStore }) => {
       recipe: [],
       user_id: 0,
       pizza_id: 0,
+      createPizza: [],
+      filterIngredient: [],
     },
     actions: {
       // Use getActions to call a function within a fuction

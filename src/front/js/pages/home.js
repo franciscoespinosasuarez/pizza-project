@@ -104,7 +104,7 @@ export const Home = () =>{
                           user={element.user_name}
                           userid={element.user_id}
                           ingredient={element.recipe}
-                          val={element.id}
+                          pizza_id={element.id}
                         />
                       );
                     })

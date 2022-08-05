@@ -12,3 +12,16 @@
 .card-comment{
     background-color: rgba(255, 255, 255, 0.406);
 }
+
+.comment-container{
+    max-height: 200px;
+}
+
+.img-comment{
+    height: 50px;
+    margin: 15px 8px
+}
+
+.ingredients-list{
+    margin-left: 0;
+}
