@@ -11,12 +11,19 @@ export const FilterIngredient = () => {
     actions.getIngredient();
   }, [])
 
+ 
+  
   const createRecipe = () => {
     for ( let i in store.itemArray){
       store.createPizza.push(store.itemArray[i])
     }
     console.log(store.createPizza)
   }
+
+  useEffect(() => {
+    createRecipe();
+  }, [])
+
 
   return (
     <div className="container filter-container">
@@ -50,7 +57,7 @@ export const FilterIngredient = () => {
           if (searchTerm == "") {
             return val;
           } else if (
-            val.first_name.toLowerCase().includes(searchTerm.toLowerCase())
+            val.name.toLowerCase().includes(searchTerm.toLowerCase())
           ) {
             return val;
           }

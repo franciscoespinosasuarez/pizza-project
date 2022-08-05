@@ -1,20 +1,21 @@
 import React, { Component, useState } from "react";
+import { Rating } from 'react-simple-star-rating'
 
-export const CreateComment = (props) =>{
+export const CreateComment = () =>{
 
-    let show_rate = (num) =>{
-        let star = Math.floor(num)
-        let a =  `<i class="fa fa-star" aria-hidden="true"></i>`
-        let star_array = []
-          for(i = 0; i < star; i++){
-          array.push(a)
-        }
-        return star_array
-    }
+
+  const [rating, setRating] = useState(0) // initial rating value
+
+  // Catch Rating value
+  const handleRating = (rate) => {
+    setRating(rate)
+    // other logic
+  }
 
     return(
         <>
             <div className="container ">
+                <Rating onClick={handleRating} ratingValue={rating} /* Available Props */ />
                 <input></input>
             </div>
         </>

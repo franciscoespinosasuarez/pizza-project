@@ -105,6 +105,14 @@ const getState = ({ getStore, getActions, setStore }) => {
         return false;
       },
 
+      //Función que copia los ingredientes seleccionados y evita repetidos:
+      createRecipe : () => {
+        for ( let i in store.itemArray){
+          store.createPizza.push(store.itemArray[i])
+        }
+        console.log(store.createPizza)
+      },
+
       //Carga las pizzas:
 
       getPizzas: async () => {
