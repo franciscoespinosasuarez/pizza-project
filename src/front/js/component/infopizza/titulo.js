@@ -8,10 +8,10 @@ export const TituloPizza = (props) => {
 
     return( 
         <div className="d-flex justify-content-center row">
-        <div className="text-center mt-4">
-          <img src={props.img} className="img-fluid rounded-start img-card"/> {/*fuente de la imagen*/}
+        <div className="text-center mt-4 div-img-mypizzas">
+          <img src={props.img} className="img-fluid rounded-start img-card img-pizzaindividual" /> {/*fuente de la imagen*/}
         </div>
-        <h1 className="text-center mt-3">{props.titulo}</h1>
+        <h1 className="text-center mt-3 titulopizza">{props.titulo}</h1>
 
       </div>
     )

@@ -82,13 +82,16 @@ export const Mypizzas = () => {
             return (
               <div className="pizzacard-user" key={i}>
                 <div className="pizzacard-user-img-div">
+                <Link to = {`/pizza/${pizza.id}`}>
                   <img
                     className="pizzacard-user-img"
                     src={pizza.pizza_image}
                   ></img>
+                  </Link>
                 </div>
-
+                <Link to = {`/pizza/${pizza.id}`} className="link-pizza">
                 <p className="pizzacard-texto">{pizza.name}</p>
+                </Link>
               </div>
             );
           })}

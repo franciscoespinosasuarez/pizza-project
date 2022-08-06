@@ -59,6 +59,11 @@ export const Home = () =>{
       </div>
 
         <Navbar />
+        <div className="container">
+        <div className="div-img-banner">
+        <h2 className=" h1-my-pizzas">Encuentra tu pizza</h2>
+      </div>
+      </div>
         
         {/* {Mostrar modal} */}
     <div className="container">
@@ -75,7 +80,9 @@ export const Home = () =>{
 
           {/* muestra los ingredientes seleccionados */}
          
-
+          <div>
+            <h2 className="h2resultadobusqueda">Resultados de la búsqueda</h2>
+          </div>
           <div hidden={store.itemArray.length === 0} className="container row selected py-2">
             {store.itemArray.map((val, i) => {
               console.log(val);

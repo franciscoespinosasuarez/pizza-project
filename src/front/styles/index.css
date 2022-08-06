@@ -42,11 +42,13 @@ body {
   text-decoration: none;
   margin-top: 30px;
   box-shadow: 1px 2px 15px 1px #ffffff80;
+  text-align: center;
+  z-index: +2;
 }
 
 .boton-registrate:hover {
   background-color: #b1550a;
-  color:white;
+  color: white;
 }
 
 .cabecera-izq {
@@ -86,7 +88,7 @@ section {
 }
 
 .login-section {
-  background-color: #FFFBE8 !important;
+  background-color: #fffbe8 !important;
 }
 
 /* PÁGINA DE USUARIO */
@@ -278,14 +280,13 @@ section {
   width: 300px;
   height: 300px;
   overflow: hidden;
-  -webkit-box-shadow: 0px 0px 5px -1px rgba(184,184,184,1);
-  -moz-box-shadow: 0px 0px 5px -1px rgba(184,184,184,1);
-  box-shadow: 0px 0px 5px -1px rgba(184,184,184,1);
+  -webkit-box-shadow: 0px 0px 5px -1px rgba(184, 184, 184, 1);
+  -moz-box-shadow: 0px 0px 5px -1px rgba(184, 184, 184, 1);
+  box-shadow: 0px 0px 5px -1px rgba(184, 184, 184, 1);
 }
 .pizzacard-user-img {
   max-width: 100%;
   position: center center;
-  
 }
 
 .pizzacard-texto {
@@ -295,6 +296,14 @@ section {
   margin: 20px 0;
 }
 
+.link-pizza {
+  text-decoration: none;
+  color: inherit;
+}
+
+.link-pizza:hover {
+  color: #b1550a;
+}
 /*mis pizzas*/
 
 .addpizza-button {
@@ -313,30 +322,26 @@ section {
   background-color: #b1550a;
 }
 
-.div-img-banner{
-background: url("https://res.cloudinary.com/dff57mtn0/image/upload/v1659466585/pizza-project/banner_pexggt.jpg");
-width: 100%;
-height: 300px;
-background-repeat: no-repeat;
-background-position: center;
-background-size: cover;
-display: flex;
-align-items: center;
-flex-direction: column;
-margin: 50px 0;
-
+.div-img-banner {
+  background: url("https://res.cloudinary.com/dff57mtn0/image/upload/v1659466585/pizza-project/banner_pexggt.jpg");
+  width: 100%;
+  height: 300px;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  margin: 50px 0;
 }
 
-.h1-my-pizzas{
+.h1-my-pizzas {
   color: white;
   font-size: 50px;
   font-weight: bold;
   text-align: center;
   margin: auto 0;
   text-shadow: 2px 2px 3px rgba(150, 150, 150, 1);
-
-
-
 }
 
 /* FOOTER */
@@ -347,9 +352,8 @@ margin: 50px 0;
   height: 60px;
 } */
 
-
 /* loading */
-.loading-container{
+.loading-container {
   position: absolute;
   right: 50%;
   top: 45%;
@@ -377,39 +381,57 @@ margin: 50px 0;
   }
 }
 
-
-
-.loading-text{
-margin-top: 10px;
-font-size: 18px;
-
-
+.loading-text {
+  margin-top: 10px;
+  font-size: 18px;
 }
 
 .loading-text:after {
-  content: '.';
-  animation: dots 1s steps(5, end) infinite;}
+  content: ".";
+  animation: dots 1s steps(5, end) infinite;
+}
 
 @keyframes dots {
-  0%, 20% {
-    color: rgba(0,0,0,0);
-    text-shadow:
-      .25em 0 0 rgba(0,0,0,0),
-      .5em 0 0 rgba(0,0,0,0);}
+  0%,
+  20% {
+    color: rgba(0, 0, 0, 0);
+    text-shadow: 0.25em 0 0 rgba(0, 0, 0, 0), 0.5em 0 0 rgba(0, 0, 0, 0);
+  }
   40% {
     color: black;
-    text-shadow:
-      .25em 0 0 rgba(0,0,0,0),
-      .5em 0 0 rgba(0,0,0,0);}
+    text-shadow: 0.25em 0 0 rgba(0, 0, 0, 0), 0.5em 0 0 rgba(0, 0, 0, 0);
+  }
   60% {
-    text-shadow:
-      .25em 0 0 black,
-      .5em 0 0 rgba(0,0,0,0);}
-  80%, 100% {
-    text-shadow:
-      .25em 0 0 black,
-      .5em 0 0 black;}}
+    text-shadow: 0.25em 0 0 black, 0.5em 0 0 rgba(0, 0, 0, 0);
+  }
+  80%,
+  100% {
+    text-shadow: 0.25em 0 0 black, 0.5em 0 0 black;
+  }
+}
 
-      #hidden{
-        display: none;
-      }
+#hidden {
+  display: none;
+}
+
+/*PAGINA INDIVIDUAL PIZZA*/
+.div-img-mypizzas {
+  height: 600px;
+  width: 600px;
+}
+
+.img-pizzaindividual {
+  width: 100%;
+  height: 100%;
+}
+.titulopizza {
+  text-transform: capitalize;
+}
+
+/*PAGINA HOME*/
+
+.h2resultadobusqueda {
+  font-size: 40px;
+  margin: 50px 0;
+  
+}
