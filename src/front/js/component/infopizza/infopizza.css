@@ -23,6 +23,10 @@ max-height: 177px !important;
 min-height: 177px !important;
 }
 
+.img-card-tittle{
+    max-width: 400px;
+}
+
 .comment-container{
     max-height: 200px;
 }

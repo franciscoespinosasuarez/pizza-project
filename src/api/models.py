@@ -87,7 +87,7 @@ class Recipe(db.Model):
             "id": self.id,
             "pizza_id" : self.pizza_id,
             "ingredient_id" : self.ingredient_id,
-            "pizza_name": self.pizza_relationship.pizza_name,
+            "pizza_name": self.pizza_relationship.name,
             "ingredient_name": self.ingredient_relationship.name,
         }
 
