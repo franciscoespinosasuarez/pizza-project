@@ -14,6 +14,7 @@ import { ShowPizza } from "./pages/showpizza";
 import { Mail } from "./pages/mail";
 import { EditPizza } from "./pages/editpizza";
 import { Prueba } from "./pages/prueba";
+import { Editmypizza } from "./pages/editmypizza";
 
 import { NewPizza } from "./pages/newpizza"; 
 
@@ -41,7 +42,7 @@ const Layout = () => {
                         {/* <Route element={<Home />} path="login" /> */}
                         <Route element={<ShowPizza />} path="/pizza/:id"/>
                         <Route element={<Filterpiz />} path="/filter"/>
-                        <Route element={<EditPizza />} path="/editpizza" />
+                        <Route element={<Editmypizza />} path="/editpizza/:id" />
                         <Route element={<NewPizza />} path="/newpizza" />
                         <Route element={<Account />} path="/my-account" />
                         <Route element={<Demo />} path="/demo" />

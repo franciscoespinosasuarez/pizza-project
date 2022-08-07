@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import Navbar from "../component/navbar";
 import Login from "../component/loginform/loginform";
+//30/07
 import config from "../config";
 import { Footer } from "../component/footer";
 import { Context } from "../store/appContext";
@@ -49,6 +50,11 @@ export const Account = () => {
 
   //30/07
   const [nuevoNombre, setNuevoNombre] = useState("");
+  const [img, setImg] = useState();
+  const [images, setImages] = useState([]);
+  const [imageURLs, setImageURLs] = useState([
+    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRHnPmUvFLjjmoYWAbLTEmLLIRCPpV_OgxCVA&usqp=CAU",
+  ]);
 
   //He descomentado este useEffect ()
   useEffect(() => {
@@ -90,9 +96,21 @@ export const Account = () => {
     }
   };
 
-  const [imageURLs, setImageURLs] = useState([
-    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRHnPmUvFLjjmoYWAbLTEmLLIRCPpV_OgxCVA&usqp=CAU",
-  ]);
+  /*imagen*/
+  useEffect(() => {
+    if (images.length < 1) return;
+    const newImageUrls = [];
+    images.forEach((image) => newImageUrls.push(URL.createObjectURL(image)));
+    setImageURLs(newImageUrls);
+  }, [images]);
+
+
+
+  const onImageChange = (e) => {
+    setImages([...e.target.files]);
+    setImg(e.target.files[0]);
+  };
+
 
   return (
     <>
@@ -108,8 +126,7 @@ export const Account = () => {
             id="imageUpload"
             accept=".png, .jpg, .jpeg"
             className=""
-            // onChange={(e) => setImg(e.target.files)}
-            //   onChange={onImageChange}
+            onChange={onImageChange}
           />
           <label className="imageUpload" for="imageUpload">
             +

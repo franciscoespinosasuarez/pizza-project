@@ -1,11 +1,13 @@
 .login-form {
   width: 400px;
   margin: 0 auto;
-  background-color: #f5f0c6;
+  background-color: rgba(245,240,198,0.95);
   padding: 30px;
   border-radius: 15px;
   -webkit-box-shadow: 5px 5px 15px 0px rgba(86,71,58,0.35); 
   box-shadow: 5px 5px 15px 0px rgba(86,71,58,0.35);
+  z-index: +3;
+
 }
 
 .login-label {
@@ -14,6 +16,7 @@
   margin: 5px 0;
   font-size: 18px;
   color: #ad682f;
+  z-index: 2
 }
 
 .login-input {
@@ -21,6 +24,7 @@
   border-radius: 10px;
   border: 1px solid black;
   padding: 5px;
+  z-index: 2;
 }
 
 .login-button {
@@ -34,6 +38,7 @@
   font-weight: 600;
   text-transform: uppercase;
   border-radius: 10px;
+  z-index: 2;
 }
 
 .login-button:hover {
