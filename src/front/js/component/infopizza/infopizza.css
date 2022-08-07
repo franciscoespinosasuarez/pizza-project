@@ -18,6 +18,11 @@
     max-height: 450px;
 }
 
+.img-carta{
+max-height: 177px !important;
+min-height: 177px !important;
+}
+
 .comment-container{
     max-height: 200px;
 }

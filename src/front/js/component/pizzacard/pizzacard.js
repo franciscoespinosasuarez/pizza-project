@@ -27,10 +27,10 @@ export const PizzaCard = (props) => {
   return(
     <div className="container col-5 m-3" onClick={()=> console.log(props.idpizza)}>
     <div className="card mb-3 container-card" >
-      <div className="row g-0">
+      <div className="row g-0 ">
         <div className="col-md-4 d-flex align-items-center ">
         <Link to = {`/pizza/${idpizza}`}>
-          <img src={props.img} className="img-fluid rounded-start img-card" alt="..."/>
+          <img src={props.img} className="img-fluid rounded-start img-card img-carta" alt="..."/>
         </Link>
         </div>
         <div className="col-md-8">

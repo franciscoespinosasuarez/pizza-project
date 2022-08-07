@@ -1,4 +1,4 @@
-import React, { Component, useState } from "react";
+import React, { Component, useEffect, useState } from "react";
 import "./infopizza.css";
 import INGREDIENTS from "./examples/ingredientsEx"
 import RECIPE from "./examples/recipe"
@@ -8,6 +8,9 @@ import RECIPE from "./examples/recipe"
 export const IngredientesPizza = () => {
 
     {/*variables según la pizza, sacar info con fetch*/}
+    // useEffect(()=>{
+    //   actions.getRecipe()
+    // },[])
 
 
     return (

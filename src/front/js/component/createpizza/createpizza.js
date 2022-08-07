@@ -99,6 +99,7 @@ export const CreatePizzaProvisional = () => {
   //     .then((data) => data)
   //     .catch((error) => error);
   // };
+  const asd = false
 
   return (
     <>
@@ -144,7 +145,7 @@ export const CreatePizzaProvisional = () => {
           <h2 className="create-pizza-tittle">Creando una nueva pizza</h2>
           <input
             type="text"
-            onChange={(e) => setName(e.target.value)}
+            onChange={(e) => {setName(e.target.value)}}
             value={name}
             name="name"
             className="input-pizza-name mt-4"
@@ -227,13 +228,13 @@ export const CreatePizzaProvisional = () => {
 
           <input type="hidden" value={store.createPizza} name="ingredients">{}</input>
 
-          <input type="submit" value="Submit" target="" className="create-pizza-btn" />
+          <input onClick={() => window.location.href = `https://3000-franciscoes-pizzaprojec-x0tpt809jri.ws-eu59.gitpod.io/home`} type="submit" value="Submit request" target="" className="create-pizza-btn" />
         </div>
       </form>
             <div>
               <p>{mensaje}</p>
             </div>
-      <iframe name="frame" id="frame" onclick ={handleSubmit}></iframe>
+      <iframe name="frame" id="frame"></iframe>
     </>
   );
 };

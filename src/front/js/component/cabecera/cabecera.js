@@ -17,7 +17,7 @@ export const Cabecera = () => {
           </div>
         </div>
         <ReactPlayer
-          url="https://res.cloudinary.com/dff57mtn0/video/upload/v1659773508/pizza-project/pizza_video_xweu8x.mp4"
+          url="https://res.cloudinary.com/dff57mtn0/video/upload/v1659905201/pizza-project/pizza_video_xweu8x_xfqfef.mp4"
           className="react-player video"
           playing
           width="100%"
