@@ -283,7 +283,9 @@ def get_post_ingredient():
 
     if request.method == 'POST':
         body = request.get_json()
-        ingredient = Ingredient(id=body["id"], name=body["name"])
+        ingredient = Ingredient(
+            description=body["description"], 
+            name=body["name"])
         db.session.add(ingredient)
         db.session.commit()
         return jsonify(ingredient.serialize()), 201
