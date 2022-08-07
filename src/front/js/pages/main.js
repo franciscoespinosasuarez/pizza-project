@@ -47,8 +47,8 @@ export const Main = () => {
 
 
       // obtener userid:
-  useEffect(() => {
-    actions.getUserId()}, [])
+  // useEffect(() => {
+  //   actions.getUserId()}, [])
 
   useEffect(() => {
     if (token) {
