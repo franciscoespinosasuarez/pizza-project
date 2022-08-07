@@ -15,15 +15,6 @@ export const FilterIngredient = () => {
   //   actions.createRecipe();
   // }, [])
  
-  
-  const createRecipe = () => {
-    for ( let i in store.itemArray){
-      store.createPizza.push(store.itemArray[i])
-    }
-    console.log(store.createPizza)
-  }
-
-
 
 
   return (
@@ -42,7 +33,6 @@ export const FilterIngredient = () => {
       {/*----------------- lista de ingredientes seleccionados --------------*/}
       <div className="container row selected py-2">
         {store.itemArray.map((val,key)=> {
-          console.log(val)
             return(
                 <div className="container col-3 py-2 d-flex justify-content-center" key={key}>
                     <button className="ingredient-btn" onClick={() => actions.eliminate_ingredient(val)}>{val.name}</button>
@@ -74,9 +64,10 @@ export const FilterIngredient = () => {
         })}
       </div>
       {/* Submit */}
-      <div className="d-flex justify-content-center">
+      <div className="d-flex justify-content-center" >
         <div>
-          <button className="button-82-pushable" >
+          <button className="button-82-pushable " data-bs-dismiss="modal"
+                aria-label="Close" >
             <span className="button-82-shadow"></span>
             <span className="button-82-edge"></span>
             <span className="button-82-front text">

@@ -60,7 +60,7 @@ export const FilterIngredient = () => {
         })}
       </div>
       {/* Submit */}
-      <div className="d-flex justify-content-center">
+      <div className="d-flex justify-content-center" data-bs-dismiss="modal" aria-label="Close">
         <div>
           <button className="button-82-pushable">
             <span className="button-82-shadow"></span>

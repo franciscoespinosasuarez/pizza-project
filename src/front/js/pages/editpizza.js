@@ -9,6 +9,13 @@ import { Footer } from "../component/footer";
 
 
 export const EditPizza = () =>{
+
+  const {store, actions} = useContext(Context); 
+
+  // obtener userid:
+  useEffect(() => {
+    actions.getUserId()}, [])
+
     return(
         <>
         <Navbar />

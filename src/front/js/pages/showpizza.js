@@ -35,6 +35,10 @@ export const ShowPizza = () =>{
   }, []);
 
 
+  // obtener userid:
+  useEffect(
+    () => {actions.getUserId()}, [])
+
 
   // useEffect(() => {
   //   actions.getPizza(id);
@@ -73,7 +77,7 @@ export const ShowPizza = () =>{
 
         {/* ----------comentarios---------- */}
 
-        <div className="container py-4">
+        {/* <div className="container py-4">
             <h2>Comentarios:</h2>
 
             <CreateComment />
@@ -100,7 +104,7 @@ export const ShowPizza = () =>{
                   )
                 })}
             </ul>
-          </div>
+          </div> */}
           <Footer />
         </>
     )

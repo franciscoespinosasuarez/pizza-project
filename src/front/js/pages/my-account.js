@@ -1,17 +1,23 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import Navbar from "../component/navbar";
 import Login from "../component/loginform/loginform";
-//30/07
 import config from "../config";
 import { Footer } from "../component/footer";
+import { Context } from "../store/appContext";
 
 export const Account = () => {
   //verifiacación del token 31/07
   const navigate = useNavigate();
   const [loading, SetLoading] = useState(true);
   const token = localStorage.token;
+
+  const {store, actions} = useContext(Context); 
+
+  // obtener userid:
+  useEffect(
+      () => {actions.getUserId()}, [])
 
   useEffect(() => {
     if (token) {

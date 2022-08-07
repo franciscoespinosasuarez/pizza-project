@@ -10,14 +10,12 @@ import { Footer } from "../component/footer";
 
 
 export const Home = () =>{
-    const {store, actions } = useContext(Context);
+    const {store, actions } = useContext(Context); 
 
-    
-
+    // obtener userid:
     useEffect(() =>{
         actions.getPizzas();
 
-        // actions.filter_function();
     }, [])
 
 

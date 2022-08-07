@@ -65,12 +65,39 @@ const getState = ({ getStore, getActions, setStore }) => {
         }
       },
 
+
+      // para obtener userID en todas las páginas
+
+      setUserId: (data)=>{
+        setStore( {user_id: data} )
+      },
+
+      getUserId: () => {
+        const token = localStorage.getItem("token")
+        fetch(`${config.hostname}/api/userid`, {
+          method:"GET",
+          headers:{
+            "Content-Type": "application/json",
+            "Authorization": "Bearer " + token,
+          }
+      })
+      .then((res) => {
+          return res.json()
+      })
+      .then((data) => {
+          setStore({ user_id: data })
+      })
+      },
+
       // FILTER array lugar donde se guardan los ingredientes
       filter_function: (ingredient) => {
         const store = getStore();
         const aux = [...store.itemArray, ingredient];
         setStore({ itemArray: aux });
-        console.log(store.itemArray);
+        const aux2 = [...store.createPizza, ingredient.id]
+        setStore({ createPizza: "" })
+        setStore({ createPizza: aux2 });
+        console.log("ingrediente id " + store.createPizza);
       },
 
       eliminate_ingredient: (ingredient) => {
@@ -86,11 +113,29 @@ const getState = ({ getStore, getActions, setStore }) => {
 
         if (index > -1) {
           const aux = store.itemArray.filter((obj, i) => {
+            console.log("obj es: " + obj.id)
             if (i !== index) {
               return obj;
             }
+            
           });
-          setStore({ itemArray: aux });
+
+          const aux2 = store.createPizza.filter((obj, i) => {
+            console.log("obj es: " + obj.id)
+            if (i !== index) {
+              return obj;
+            }
+            
+          })
+          ;
+
+          
+
+        console.log("aux es:")
+        console.log(aux)
+        setStore({ itemArray: aux });
+
+        setStore({ createPizza: aux2 })
         }
       },
 

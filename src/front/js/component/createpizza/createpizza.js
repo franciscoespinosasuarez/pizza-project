@@ -1,6 +1,7 @@
 import React, { useContext, useState, useEffect } from "react";
 import { Context } from "../../store/appContext";
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import "./createpizza.css";
 import { FilterIngredient } from "../filteringredient/filteringredientCreate";
 import config from "../../config.js";
@@ -10,6 +11,7 @@ export const CreatePizzaProvisional = () => {
   const [recipe, setRecipe] = useState("");
   const [img, setImg] = useState();
   const [images, setImages] = useState([]);
+  const [mensaje, setMensaje] = useState("");
   const [imageURLs, setImageURLs] = useState([
     "https://sopranospizzaca.com/wp-content/uploads/2018/11/placeholder.png",
   ]);
@@ -59,6 +61,32 @@ export const CreatePizzaProvisional = () => {
     setImg(e.target.files[0]);
   };
 
+  //revisa el form y te envía al inicio
+  const goHome = () =>{
+    navigate("/home")
+  }
+  const handleSubmit = (e) =>{
+    e.preventDefault();
+    setMensaje("");
+
+    if (
+      name === undefined ||
+      name === "" ||
+      images === undefined ||
+      images === "" ||
+      recipe === undefined ||
+      recipe === "" ||
+      store.createPizza.length === 0 
+    ) {
+      console.log("todos los campos son obligatorios");
+      setMensaje(
+        "Rellene todos los campos y añada al menos 1 ingrediente"
+      );
+  } else {
+    setMensaje("Su pizza ha sido creada \(◦'⌣'◦)/")
+    setTimeout(goHome,1500)
+  }
+}
   // const sendData = (name, recipe, email, password, pizza_image) => {
   //   fetch(`${config.hostname}api/pizza`, {
   //     method: "POST",
@@ -157,9 +185,10 @@ export const CreatePizzaProvisional = () => {
             </button>
           </div>
 
+         
+
           <div className="container row selected py-2">
             {store.itemArray.map((val, key) => {
-              console.log(val);
               return (
                 <div className="container col-3 py-2 d-flex justify-content-center">
                   <button
@@ -194,10 +223,17 @@ export const CreatePizzaProvisional = () => {
             ></textarea>
           </div>
 
-            <input type="submit" value="Submit" className="create-pizza-btn" />
+          {/* input oculto */}
+
+          <input type="hidden" value={store.createPizza} name="ingredients">{}</input>
+
+          <input type="submit" value="Submit" target="" className="create-pizza-btn" />
         </div>
       </form>
-      <iframe name="frame" id="frame" hidden></iframe>
+            <div>
+              <p>{mensaje}</p>
+            </div>
+      <iframe name="frame" id="frame" onclick ={handleSubmit}></iframe>
     </>
   );
 };

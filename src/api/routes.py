@@ -56,29 +56,55 @@ def add_pizza():
 # cloudinary
 
     image_to_load = request.files["file"]
-    print("nombre :", nombre )
-    print("image :", image_to_load )
-    print("receta :", receta )
 
     if not image_to_load:
-        return jsonify("imagen no existe")
+        return jsonify("Imagen no existe")
+    if not nombre:
+        return jsonify("Pongale un nombre a su pizza")
+    if not receta:
+        return jsonify("Escriba la receta")
 
     result = cloudinary.uploader.upload(image_to_load)
     print(result)
     url = result["url"]
-    # user_image = User(perfil_image=url)
-        # cloudinary
 
     pizza = Pizza(
         user_id=id,
         pizza_image=url,
         name = nombre,
         recipe = receta)
-    print(">>>>>>>>>>>>5")
 
     db.session.add(pizza)
+
+    #Crear recipes
+    ingredients = request.form["ingredients"]
+
+    if len(ingredients) == 0:
+        return jsonify("Debe tener al menos 1 ingrediente")
+
+    for x in ingredients:
+        if x != ",":
+            pizza = Pizza.query.filter_by(name = nombre).first()
+            
+            id_ingredient = x
+            print(ingredients)
+            print("><><ingredient_id = " , id_ingredient)
+
+            recipe = Recipe(
+                pizza_id = int(pizza.id),
+                ingredient_id = int(id_ingredient)
+            )
+            db.session.add(recipe)
+    
+
+    print(">>>>>>>>>>>10")
+
+
     db.session.commit()
-    return jsonify("ok"), 201
+    
+    #A partir de aquí hace el post de las recipes
+
+    return jsonify("Pizza creada"), 201
 
 @api.route('/pizza/<int:pizza_id>', methods=['GET', 'PUT', 'DELETE'])
 def single_pizza(pizza_id):
@@ -237,6 +263,15 @@ def login():
 
     return jsonify(access_token=access_token, user_id=user.id), 200         
  
+#SETTEA EL USER_ID PARA NO PERDERLO:
+@api.route("/userid", methods=["GET"])
+@jwt_required()
+def get_userid():
+    data_user = get_jwt_identity()
+    email = data_user
+    user = User.query.filter_by(email=email).first()
+    user_id = user.id
+    return jsonify(user_id), 201
 
 #INGREDIENT -------------------->
 @api.route('/ingredient', methods=['GET', 'POST'])

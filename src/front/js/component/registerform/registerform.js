@@ -97,7 +97,7 @@ function Register() {
                 </p>
               );
               
-              setInterval(loginAfterRegister, 1500)
+              setTimeout(loginAfterRegister, 1500)
               // actions.login(data["email"], data["password"]).then(() => {
               //   navigate("/home");
               // });

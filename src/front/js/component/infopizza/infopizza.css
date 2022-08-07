@@ -13,6 +13,11 @@
     background-color: rgba(255, 255, 255, 0.406);
 }
 
+.img-infopizza{
+    max-width: 450px;
+    max-height: 450px;
+}
+
 .comment-container{
     max-height: 200px;
 }
@@ -24,4 +29,46 @@
 
 .ingredients-list{
     margin-left: 0;
+}
+
+/* comentarios */
+.comment-style{
+    border-radius: 10px;
+    padding: 5px;
+}
+
+.container-firstcomment{
+    background-color: rgba(255, 255, 255, 0.406);
+    margin-left: 40%;
+    margin-bottom: 20px;
+    min-height: 100px;
+    line-height: 25px;
+    position: relative;
+    max-width: 400px;
+}
+
+.input-comment{
+    outline: none;
+    border: none;
+    background-color: rgba(255, 255, 255, 0.406);
+    height: 45px;
+    position: absolute;
+    bottom: 5px;
+}
+
+.btn-coment{
+    position: absolute;
+    right: 5px;
+    bottom: 5px;
+    
+}
+
+.btn-coment-active{
+    background-color: #B1550A;
+    color: white;
+}
+
+.btn-coment-active:hover{
+    background-color: #ad682f;
+    
 }
