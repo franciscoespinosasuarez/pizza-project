@@ -17,7 +17,7 @@ export const Navbar = () => {
   return (
     <nav className="navbar navbar-ofi">
       <div className="container ">
-        <Link to="/">
+        <Link to="/home">
           <img className="logo" src={Logo} title="inicio"/>
         </Link>
         <div className="ml-auto">

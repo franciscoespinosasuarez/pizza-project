@@ -47,39 +47,39 @@ export const Main = () => {
 
 
       // obtener userid:
-  useEffect(() => {
-    actions.getUserId()}, [])
+  // useEffect(() => {
+  //   actions.getUserId()}, [])
 
-  useEffect(() => {
-    if (token) {
-      SetLoading(true);
-      setTimeout(validatetoken, 1000);
-      // const validatetoken = () => {fetch(`${config.hostname}/api/validatoken`, {
-      //   headers: {
-      //     method: "GET",
-      //     Authorization: `Bearer ${token}`,
-      //   },
-      // })
-      //   .then((res) => {
-      //     if (res.status == 200) {
-      //       // return res.json();
-      //       navigate("/home");
+  // useEffect(() => {
+  //   if (token) {
+  //     SetLoading(true);
+  //     setTimeout(validatetoken, 1000);
+  //     // const validatetoken = () => {fetch(`${config.hostname}/api/validatoken`, {
+  //     //   headers: {
+  //     //     method: "GET",
+  //     //     Authorization: `Bearer ${token}`,
+  //     //   },
+  //     // })
+  //     //   .then((res) => {
+  //     //     if (res.status == 200) {
+  //     //       // return res.json();
+  //     //       navigate("/home");
 
-      //     }
-      //   })}
-    }
-  }, []);
+  //     //     }
+  //     //   })}
+  //   }
+  // }, []);
 
-  if (loading) {
-    return (
-      <>
-        <div className="loading-container">
-          <div className="spinner"></div>
-          <p className="loading-text">Cargando</p>
-        </div>
-      </>
-    );
-  }
+  // if (loading) {
+  //   return (
+  //     <>
+  //       <div className="loading-container">
+  //         <div className="spinner"></div>
+  //         <p className="loading-text">Cargando</p>
+  //       </div>
+  //     </>
+  //   );
+  // }
 
   return (
     <>
